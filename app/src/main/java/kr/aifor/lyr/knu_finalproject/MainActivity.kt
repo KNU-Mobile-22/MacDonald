@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.appcompat.view.menu.MenuAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
 
 data class Menu(val name : String, val price : String,val image: String)
 class MainActivity : AppCompatActivity() {
@@ -35,6 +36,6 @@ class MainActivity : AppCompatActivity() {
             adapter = menuAdapter
         }
 
-
+        Log.d("DEBUG", "test")
     }
 }
