@@ -7,6 +7,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_main)
-        setContentView(R.layout.gen_menu_layout)
+        setContentView(R.layout.easy_menu_layout)
     }
 }
