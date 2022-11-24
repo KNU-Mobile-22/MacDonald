@@ -40,52 +40,49 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:columnCount="2"
-                android:useDefaultMargins="true">
+                android:columnCount="2">
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/bigmaxxml"
-                    android:text="쇠고기 버거"
+                    android:drawableTop="@drawable/bigmac_small"
+                    android:text="페퍼로니 피자 버거\n1"
                     android:textSize="20dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-
-                    android:drawableTop="@drawable/bigmaxxml"
-                    android:text="치킨 버거"
+                    android:drawableTop="@drawable/bigmac_small"
+                    android:text="페퍼로니 메가 피자 버거\n2"
                     android:textSize="20dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-
-                    android:drawableTop="@drawable/bigmaxxml"
-                    android:text="치즈 버거"
+                    android:drawableTop="@drawable/bigmac_small"
+                    android:text="빅맥\n3"
                     android:textSize="20dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
 
-                    android:drawableTop="@drawable/bigmaxxml"
-                    android:text="불고기 버거"
+                    android:drawableTop="@drawable/bigmac_small"
+                    android:text="1955 버거\n4"
                     android:textSize="20dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/bigmaxxml"
-                    android:text="새우 버거"
+                    android:drawableTop="@drawable/bigmac_small"
+                    android:text="베이컨 토마토 디럭스\n5"
                     android:textSize="20dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/bigmaxxml"
-                    android:text="생선 버거"
+                    android:drawableTop="@drawable/bigmac_small"
+                    android:text="햄버거\n6"
                     android:textSize="20dp" />
 
             </GridLayout>
@@ -96,17 +93,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="일반 모드로 돌아가기"
-            android:textSize="30dp" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
