@@ -40,22 +40,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="홈" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="추천메뉴" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="버거" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="해피 스낵" />
 
             <Button
                 android:layout_width="match_parent"
@@ -70,17 +55,13 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="디저트" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="음료" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="해피밀" />
+                android:text="디저트" />
+
 
         </LinearLayout>
 
@@ -89,9 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:background="#D3D3D3">
-
-        </LinearLayout>
+            android:background="#D3D3D3" />
 
     </LinearLayout>
 
@@ -111,11 +90,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
                 android:background="@color/white"
                 android:text="주문내역"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="1dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
