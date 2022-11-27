@@ -8,20 +8,23 @@
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/drawable/bigmac_small.xml" value="0.1455" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/drawable/bigmaxxml.xml" value="0.1455" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/activity_main.xml" value="0.1125" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/beaf_menu_layout.xml" value="0.1" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/beaf_menu_layout.xml" value="0.264" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/bulgogi_menu_layout.xml" value="0.264" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/card1.xml" value="0.264" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/card2.xml" value="0.264" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/cheese_menu_layout.xml" value="0.2526041666666667" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/chicken_menu_layout.xml" value="0.2526041666666667" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/easy_menu_layout.xml" value="0.1" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/fish_menu_layout.xml" value="0.2526041666666667" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/cheese_menu_layout.xml" value="0.264" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/chicken_menu_layout.xml" value="0.264" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/easy_activity_main.xml" value="0.2" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/easy_menu_layout.xml" value="0.264" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/fish_menu_layout.xml" value="0.264" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/fragment_beaf_menu.xml" value="0.25364583333333335" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/fragment_easy_menu.xml" value="0.25364583333333335" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/gen_menu_layout.xml" value="0.264" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/home.xml" value="0.16799999999999998" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/nocard.xml" value="0.2" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/pay1.xml" value="0.264" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/recycler_menu.xml" value="0.2" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/shrimp_menu_layout.xml" value="0.2526041666666667" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/shrimp_menu_layout.xml" value="0.264" />
       </map>
     </option>
   </component>
