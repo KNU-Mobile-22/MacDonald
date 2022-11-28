@@ -34,62 +34,44 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="420dp"
             android:orientation="vertical">
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="홈" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="추천메뉴" />
-
-            <Button
+                android:id="@+id/gen_btn_burger"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="버거" />
-
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="해피 스낵" />
-
-            <Button
+                android:id="@+id/gen_btn_side"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="사이드" />
 
             <Button
+                android:id="@+id/gen_btn_coffee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="커피" />
 
             <Button
+                android:id="@+id/gen_btn_desert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="디저트" />
 
             <Button
+                android:id="@+id/gen_btn_drink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="음료" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="해피밀" />
-
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#D3D3D3">
-
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
