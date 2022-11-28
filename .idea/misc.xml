@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/drawable/ic_launcher_background.xml" value="0.162" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/gen_menu_layout.xml" value="0.21739130434782608" />
-        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/recycler_menu.xml" value="0.12335359675785208" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/recycler_menu.xml" value="0.4" />
       </map>
     </option>
   </component>
