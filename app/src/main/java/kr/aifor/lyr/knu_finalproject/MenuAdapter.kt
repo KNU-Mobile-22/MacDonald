@@ -1,6 +1,7 @@
 package kr.aifor.lyr.knu_finalproject
 
 import MenuList
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 class MyViewHolder(val layout: View) : RecyclerView.ViewHolder(layout) {
     val Menu_name: TextView = layout.findViewById(R.id.rec_menu_name)
     val Menu_IMG: ImageView = layout.findViewById(R.id.rec_menu_img)
-    val Menu_price:TextView = layout.findViewById(R.id.rec_menu_price)
+    val Menu_price: TextView = layout.findViewById(R.id.rec_menu_price)
+
     interface OnItemClick
 }
-class MenuAdapter(var MenuList: MenuList): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_menu, parent, false)
+class MenuAdapter(var MenuList: MenuList) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        var view =
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_menu, parent, false)
 
         return MyViewHolder(view)
     }
@@ -30,6 +34,11 @@ class MenuAdapter(var MenuList: MenuList): RecyclerView.Adapter<RecyclerView.Vie
 
         MenuViewHolder.Menu_name.text = Menu.name
         MenuViewHolder.Menu_price.text = Menu.price.toString() + "원"
+
+        // 리스트 내 항목 클릭 시 onClick() 호출
+        holder.itemView.setOnClickListener {
+            Log.d("test", "item clicked! ${holder.Menu_name.text}")
+        }
     }
 
     override fun getItemCount(): Int {
