@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val beafMenuBtn = binding.beafBurgerBtn
+        val orderListView = binding.orderListView
+        var menuName: String
 
         requestLanch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -31,7 +33,11 @@ class MainActivity : AppCompatActivity() {
             if (it.resultCode == RESULT_OK) {
                 val resultData = it.data?.getStringExtra("result")
                 if (resultData != null) {
-                    Log.d("result", resultData)
+                    var token = resultData.split("\n")
+                    menuName = token[0]
+                    Log.d("result", menuName)
+                    orderListView.append(menuName + "\n")
+                    // 메뉴 추가하는 로직은 좀 더 생각해봐야 할 듯
                 }
             }
         }
