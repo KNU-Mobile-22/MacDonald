@@ -12,17 +12,20 @@ import android.widget.Toast
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(var MenuList: Array<Menu>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(var MenuList: Array<Menu>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    interface OnItemCLickListener{
-        fun onItemClick(v:View, data:Menu, position: Int)
+    interface OnItemCLickListener {
+        fun onItemClick(v: View, data: Menu, position: Int)
     }
-    private var listener : OnItemCLickListener? = null
-    fun setOnItemClickListener(listener:OnItemCLickListener){
+
+    private var listener: OnItemCLickListener? = null
+    fun setOnItemClickListener(listener: OnItemCLickListener) {
         this.listener = listener
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_menu, parent, false)
+        var view =
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_menu, parent, false)
         return MyViewHolder(view)
     }
 
@@ -39,11 +42,12 @@ class MenuAdapter(var MenuList: Array<Menu>): RecyclerView.Adapter<RecyclerView.
     override fun getItemCount(): Int {
         return MenuList.size
     }
+
     inner class MyViewHolder(val layout: View) : RecyclerView.ViewHolder(layout) {
         val Menu_name: TextView = layout.findViewById(R.id.rec_menu_name)
         val Menu_IMG: ImageView = layout.findViewById(R.id.rec_menu_img)
-        val Menu_price:TextView = layout.findViewById(R.id.rec_menu_price)
-        fun bind(item:Menu){
+        val Menu_price: TextView = layout.findViewById(R.id.rec_menu_price)
+        fun bind(item: Menu) {
             val name = item.name
             val price = item.price
             val code = item.code
@@ -51,10 +55,9 @@ class MenuAdapter(var MenuList: Array<Menu>): RecyclerView.Adapter<RecyclerView.
             itemView.setOnClickListener {
                 listener?.onItemClick(itemView, item, position)
                 Log.d("Gen", "OnClickListener")
-                Log.d("Gen","InAdapter : ${name}, ${price}")
+                Log.d("Gen", "InAdapter : ${name}, ${price}")
             }
         }
-
 
 
     }
