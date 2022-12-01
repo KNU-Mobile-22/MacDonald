@@ -1,114 +1,31 @@
 package kr.aifor.lyr.knu_finalproject
 
-import MenuList
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import androidx.appcompat.view.menu.MenuAdapter
+import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
+import kotlin.collections.HashMap
 
-public class Menu(var name: String, var price: Int, var code: Int) {
-    var left: Int = 50
-}
 
-/**
- * MenuList 클래스
- * var
- *  list : ArrayList<Menu>(name : String, price : Int, code : Int)
- */
-
-/*
-class MenuList{
-    var list = ArrayList<Menu>()
-    fun makeBurgerList(){
-        this.list.add(Menu("페퍼로니 메가 피자 버거", 10000, 101))
-        this.list.add(Menu("페퍼로니 피자버거", 7500, 102))
-        this.list.add(Menu("맥크리스피 디럭스 버거", 7500, 103))
-        this.list.add(Menu("맥크리스피 클래식 버거", 6700, 104))
-        this.list.add(Menu("트리플 치즈버거", 6600, 105))
-        this.list.add(Menu("필레 오 피쉬버거", 4500, 106))
-        this.list.add(Menu("더블 필레 오 피쉬버거", 6000, 107))
-        this.list.add(Menu("슈비버거", 6600, 108))
-        this.list.add(Menu("슈슈버거", 5500, 109))
-        this.list.add(Menu("1955버거", 6800, 110))
-        this.list.add(Menu("맥치킨", 4300, 111))
-        this.list.add(Menu("맥치킨 모짜렐라", 5800, 112))
-        this.list.add(Menu("빅맥", 5700, 113))
-        this.list.add(Menu("맥스파이시 상하이버거", 5700, 114))
-        this.list.add(Menu("더블 불고기 버거", 5300, 115))
-        this.list.add(Menu("에그 불고기 버거", 4300, 116))
-        this.list.add(Menu("불고기 버거", 3300, 117))
-        this.list.add(Menu("베이컨 토마토 디럭스", 6600, 118))
-        this.list.add(Menu("더블 쿼터파운더 치즈", 8200, 119))
-        this.list.add(Menu("쿼터파운더 치즈", 6300, 120))
-        this.list.add(Menu("치즈버거", 3300, 121))
-        this.list.add(Menu("더블 치즈버거", 5300, 122))
-        this.list.add(Menu("햄버거", 3000, 123))
-    }
-    fun makeSideList() {
-        this.list.add(Menu("후렌치 후라이 스몰", 1900, 201))
-        this.list.add(Menu("후렌치 후라이 미디엄", 2600, 202))
-        this.list.add(Menu("후렌치 후라이 라지", 3200, 203))
-        this.list.add(Menu("치킨 토마토 스낵랩", 3000, 204))
-        this.list.add(Menu("코우슬로", 2700, 205))
-        this.list.add(Menu("골든 모짜렐라 치즈스틱 2조각", 3300, 206))
-        this.list.add(Menu("골든 모짜렐라 치즈스틱 4조각", 5000, 207))
-        this.list.add(Menu("맥너겟 4조각", 3000, 208))
-        this.list.add(Menu("상하이 치킨 스낵랩", 3200, 209))
-    }
-    fun makeDrinkList() {
-        this.list.add(Menu("딸기 칠러", 3700, 301))
-        this.list.add(Menu("제주 한라봉 칠러", 3700, 302))
-        this.list.add(Menu("코카 콜라", 2200, 303))
-        this.list.add(Menu("코카 콜라 제로", 2200, 304))
-        this.list.add(Menu("환타", 2200, 305))
-        this.list.add(Menu("스프라이트", 2200, 306))
-        this.list.add(Menu("스프라이트 제로", 2200, 307))
-        this.list.add(Menu("딸기 쉐이크", 3500, 308))
-        this.list.add(Menu("초코 쉐이크", 3500, 309))
-    }
-    fun makeCoffeeList() {
-        this.list.add(Menu("바닐라 라떼", 4700, 401))
-        this.list.add(Menu("아이스 바닐라 라떼", 4200, 402))
-        this.list.add(Menu("카페라떼", 3700, 403))
-        this.list.add(Menu("카푸치노", 3700, 404))
-        this.list.add(Menu("아메리카노", 3200, 405))
-        this.list.add(Menu("드립 커피", 2700, 406))
-        this.list.add(Menu("아이스 드립 커피", 2200, 407))
-        this.list.add(Menu("아이스 아메리카노", 3200, 408))
-        this.list.add(Menu("아이스 카페라떼", 3700, 409))
-        this.list.add(Menu("에스프레소", 2400, 410))
-    }
-    fun makeDesertList() {
-        this.list.add(Menu("디핑 소스 스위트 앤 사워", 300, 501))
-        this.list.add(Menu("디핑 소스 스위트 칠리", 300, 502))
-        this.list.add(Menu("디핑 소스 케이준", 300, 503))
-        this.list.add(Menu("스트링 치즈", 2400, 504))
-        this.list.add(Menu("츄러스", 2500, 505))
-        this.list.add(Menu("애플파이", 2000, 506))
-        this.list.add(Menu("오레오 맥플러리", 3400, 507))
-        this.list.add(Menu("딸기 선데이 아이스크림", 2500, 508))
-        this.list.add(Menu("초코 선데이 아이스크림", 2500, 509))
-        this.list.add(Menu("바닐라 선데이 아이스크림", 250, 510))
-
-    }
-}
-
- */
-
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var rec_Burger: RecyclerView
     lateinit var MenuManager: GridLayoutManager
-    var burgerList = MenuList()
-    var sideList = MenuList()
-    var drinkList = MenuList()
-    var coffeeList = MenuList()
-    var desertList = MenuList()
 
+    // lateinit var orderList: TextView
+    lateinit var orderList: RecyclerView
+    var orderMap = HashMap<String, Int>()
+    var menuList = MenuList()
+    var CurrentMenu: Int = 0
+    lateinit var menuAdapter: MenuAdapter
+
+    lateinit var requestLanch: ActivityResultLauncher<Intent>
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -116,6 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         //레이아웃의 View 가져오기
         rec_Burger = findViewById(R.id.recyclerview)
+        orderList = findViewById(R.id.orderList)
         val btn_burger: Button = findViewById(R.id.gen_btn_burger)
         btn_burger.setOnClickListener(this)
         val btn_side: Button = findViewById(R.id.gen_btn_side)
@@ -127,41 +45,115 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btn_desert: Button = findViewById(R.id.gen_btn_desert)
         btn_desert.setOnClickListener(this)
 
-        //데이터 초기화
-        burgerList.makeBurgerList()
-        sideList.makeSideList()
-        drinkList.makeDrinkList()
-        coffeeList.makeCoffeeList()
-        desertList.makeDesertList()
-
         //adapter 연결
         MenuManager = GridLayoutManager(this, 3)
-        val menuAdapter = MenuAdapter(burgerList)
+        menuAdapter = MenuAdapter(menuList.burgerList)
         var Menu_List = rec_Burger.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
             adapter = menuAdapter
         }
+        menuAdapter.setOnItemClickListener(object :
+            kr.aifor.lyr.knu_finalproject.MenuAdapter.OnItemCLickListener {
+            override fun onItemClick(v: View, data: Menu, position: Int) =
+                ItemClickLister(v, data, position)
+        })
 
+        val backButton = findViewById<ImageButton>(R.id.gen_btn_back)
+        backButton.setOnClickListener {
+            intent.putExtra("result", "test")
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+
+        val paymentButton = findViewById<Button>(R.id.gen_btn_payment)
+        paymentButton.setOnClickListener {
+            val intent2 = Intent(this, PaymentSelectActivity::class.java)
+            intent2.putExtra("data1", "test1")
+            intent2.putExtra("data2", "test2")
+            /* 양방향으로 인텐트하려니까 팅김;; */
+            // requestLanch.launch(intent2)
+
+            startActivity(intent2)
+            finish()
+        }
     }
 
+    /**
+     * 카테고리 클릭리스너
+     *
+     * var CurrentMenu :
+     *  0 - 버거
+     *  1 - 디저트
+     *  2 - 커피
+     *  3 - 음료
+     *  4 - 사이드
+     *
+     *  RecyclerView가 새로 만들어졌기 때문에 ItemClickListener도 새로 넣어줘야 함
+     */
     override fun onClick(p0: View) {
-        var data: MenuList = burgerList
+        var data: Array<Menu> = menuList.burgerList
         when (p0.id) {
-            R.id.gen_btn_burger -> data = burgerList
-            R.id.gen_btn_desert -> data = desertList
-            R.id.gen_btn_coffee -> data = coffeeList
-            R.id.gen_btn_drink -> data = drinkList
-            R.id.gen_btn_side -> data = sideList
+            R.id.gen_btn_burger -> {
+                data = menuList.burgerList
+                CurrentMenu = 0
+            }
+            R.id.gen_btn_desert -> {
+                data = menuList.desertList
+                CurrentMenu = 1
+            }
+            R.id.gen_btn_coffee -> {
+                data = menuList.coffeeList
+                CurrentMenu = 2
+            }
+            R.id.gen_btn_drink -> {
+                data = menuList.drinkList
+                CurrentMenu = 3
+            }
+            R.id.gen_btn_side -> {
+                data = menuList.sideList
+                CurrentMenu = 4
+            }
         }
-        val menuAdapter = MenuAdapter(data)
+        menuAdapter = MenuAdapter(data)
         var Menu_List = rec_Burger.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
             adapter = menuAdapter
         }
+        menuAdapter.setOnItemClickListener(object :
+            kr.aifor.lyr.knu_finalproject.MenuAdapter.OnItemCLickListener {
+            override fun onItemClick(v: View, data: Menu, position: Int) =
+                ItemClickLister(v, data, position)
+        })
+    }
 
-
+    /**
+     * 각 메뉴 아이템 클릭리스너
+     */
+    fun ItemClickLister(v: View, data: Menu, position: Int) {
+        if (data.code / 100 == 1) {
+            /**
+             * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
+             */
+        } else {
+            var order: String = ""
+            if (orderMap.containsKey(data.name))
+                orderMap.put(data.name, orderMap.get(data.name)!! + 1)
+            else
+                orderMap.put(data.name, 1)
+            for (key in orderMap.keys) {
+                order = order + "${key} + ${(data.price * orderMap.get(key)!!).toString()}\n"
+            }
+            // orderList.setText(order)
+            Log.d("Gen", order)
+        }
+        Toast.makeText(
+            v.context,
+            "${data.name}\n${data.price}",
+            Toast.LENGTH_SHORT
+        ).show()
+        Log.d("Gen", "${data.name}, ${data.price}")
     }
 }
 /**
