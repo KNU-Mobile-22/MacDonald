@@ -8,6 +8,7 @@
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/activity_complete_payment.xml" value="0.2" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/activity_main.xml" value="0.12335359675785208" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/activity_payment_select.xml" value="0.20652173913043478" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/activity_select_set.xml" value="0.20652173913043478" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/card1.xml" value="0.20652173913043478" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/card2.xml" value="0.1" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/gen_menu_layout.xml" value="0.21739130434782608" />
@@ -16,6 +17,7 @@
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/pay1.xml" value="0.20652173913043478" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/rec_orderlist.xml" value="0.20652173913043478" />
         <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/recycler_menu.xml" value="0.4" />
+        <entry key="..\:/android_workspace/MacDonald/app/src/main/res/layout/supervisor.xml" value="0.20652173913043478" />
       </map>
     </option>
   </component>

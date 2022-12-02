@@ -75,12 +75,14 @@ class HomeActivity : AppCompatActivity() {
 
         when (v.id) {
             R.id.option -> {
-                currentMode = "easy"
+
                 btnText = btn_option.text.toString()
                 if (btnText == "키오스크가 어려우신가요?") {
-                    btn_option.text = "포장 및 매장을 선택해주세요"
+                    currentMode = "easy"
+                    btn_option.text = "일반 모드로 돌아가기"
                     //btn_option.setTextSize(10)
                 } else {
+                    currentMode = "general"
                     btn_option.text = "키오스크가 어려우신가요?"
                 }
                 Toast.makeText(
