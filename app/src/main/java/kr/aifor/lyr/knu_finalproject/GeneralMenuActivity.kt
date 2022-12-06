@@ -9,6 +9,12 @@ import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -26,6 +32,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var menuAdapter: MenuAdapter
 
     lateinit var requestLanch: ActivityResultLauncher<Intent>
+    lateinit var database: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -77,6 +85,19 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent2)
             finish()
         }
+
+        database = Firebase.database.reference
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var curMenu = snapshot.child("burgerList/더블 불고기 버거").getValue()
+                Log.d("myLog", "${curMenu}")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     /**

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".EasyMenuActivity">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="130dp"
+            android:gravity="center"
+            android:text="소 고 기\n버거"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="130dp"
+            android:gravity="center"
+            android:text="치 킨\n버 거"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="130dp"
+            android:gravity="center"
+            android:text="치 즈\n버 거"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="불 고 기\n버 거"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="새 우\n버 거"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="생 선\n버 거"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="사 이 드"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/easy_drink_btn"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="음  료"
+            android:textSize="20dp" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="디 저 트"
+            android:textSize="20dp" />
+
+    </GridLayout>
+
+</LinearLayout>

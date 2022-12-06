@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="관리자 메뉴"
+        android:textSize="40dp" />
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:text="1일 판매 물량 : "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/one_day_sell"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:text="판매 수량 : "
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:id="@+id/all_sell"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:text="총 판매 금액 : "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/all_sum"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="80dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="1955 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/text_1955_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="베이컨 토마토 디럭스 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/bacon_tomato_deluxe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="빅맥"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/bigmac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="불고기 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/bulgogi_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="치즈 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/cheese_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="더블 치즈 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/double_cheese_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="더블 피지오 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/double_filet_o_fish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="더블 쿼터 치즈 파운더 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/double_quarter_pounder_with_cheese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="더블 불고기 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/double_bulgogi_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="에그 불고기 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/egg_bulgogi_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="피지오 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/fish_o_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="햄버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/hamburger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="맥치킨 모짜렐라 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mcchicken_mozarella_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="맥크리스피 클래식 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mccrispy_classic_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="맥 크리스피 디럭스 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mccrispy_deluxe_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="맥치킨"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mcchicken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="맥 스파이시 상하이 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mcspicy_shanghai_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="페퍼로니 메가 피자 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/pepperoni_mega_pizza_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="쿼터파운더 치즈 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/quarter_pounder_with_cheese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="쉬림프 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/shrimp_beef_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="슈프림 쉬림프 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/supreme_shrimp_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="트리플 치즈 버거"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/triple_cheese_burger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="아메리카노"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/americano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="카페라떼"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/cafe_latte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="드립커피"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/drip_coffee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="에스프레소"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/espresso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="아이스 아메리카노"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/iced_americano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="아이스 카페라떼"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/iced_cafe_latte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="아이스 드립 커피"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/iced_drip_coffee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="아이스 바닐라 라떼"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/iced_vanilla_latte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="바닐라 라떼"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/vanilla_latte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="애플파이"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/apple_pie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="칠리 소스"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/chilly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="초콜렛 선데이"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/chocolate_sundae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="츄러스"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/churros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="케이준 소스"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/keijun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="오레오 맥플러리"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/oreo_mcflurry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스트로베리 선데이"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/strawberry_sundae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스트링 치즈"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/string_cheese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스윗앤 스노우"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/sweet_and_snow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="바닐라 선데이"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/vanilla_sundae"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="초콜렛 쉐이크"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/chocolate_shake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="코카콜라"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/coca_cola"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="코카콜라제로"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/coca_cola_zero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="환타"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/fanta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="제주 할라봉 칠러"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/jeju_hallabong_chiller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스프라이트"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/sprite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스프라이트 제로"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/sprite_zero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스트로베리 쉐이크"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/strawberry_shake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="스트로베리 칠러"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/strawberry_chiller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="바닐라 쉐이크"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/vanilla_shake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="치킨 토마토 스낵 웝"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/chicken_tomato_snack_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="콘슬로우"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/coleslaw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="프렌치 프라이 라지"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/french_fries_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="프렌츠 프라이 미듐"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/french_fries_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="프렌치 프라이 스몰"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/french_fries_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="골든 모짜렐라 치즈 스틱 2개"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/golden_mozzarella_cheese_sticks_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="골든 모짜렐라 치즈 스틱 4개"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/golden_mozzarella_cheese_sticks_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="맥너겟 4개"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/mcnugget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
+                    android:text="상하이 치킨 스낵 웝"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/shanghai_chicken_snack_wrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="0"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
