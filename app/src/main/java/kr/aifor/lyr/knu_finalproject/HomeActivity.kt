@@ -54,9 +54,8 @@ class HomeActivity : AppCompatActivity() {
                 intent.putExtra("data1", "takeIn")
                 intent.putExtra("data2", "generalMode")
                 requestLanch.launch(intent)
-            }
-            else if (currentMode.equals("easy")) {
-                val intent = Intent(this,EasyMenuActivity::class.java)
+            } else if (currentMode.equals("easy")) {
+                val intent = Intent(this, EasyMenuActivity::class.java)
 
                 requestLanch.launch(intent)
             }
@@ -70,9 +69,8 @@ class HomeActivity : AppCompatActivity() {
                 intent.putExtra("data1", "takeIn")
                 intent.putExtra("data2", "generalMode")
                 requestLanch.launch(intent)
-            }
-            else if (currentMode.equals("easy")) {
-                val intent = Intent(this,EasyMenuActivity::class.java)
+            } else if (currentMode.equals("easy")) {
+                val intent = Intent(this, EasyMenuActivity::class.java)
 
                 requestLanch.launch(intent)
             }
@@ -90,6 +88,7 @@ class HomeActivity : AppCompatActivity() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var curMenu = snapshot.child("burgerList/1955버거").getValue()
+
                 Log.d("myLog", "curMenu: ${curMenu}")
 
                 var totalSellCnt = snapshot.child("stockData/totalSellCount").getValue()
