@@ -6,42 +6,50 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+// import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.*
+import kotlinx.coroutines.tasks.await
 import kotlin.collections.HashMap
+
+/**
+ * TaskList
+ * 1. 버거 주문시 세부메뉴로 Intent
+ * 2. 코루틴 구현하기
+ * 3. Intent로 넘기기
+ */
 
 
 class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var rec_Burger: RecyclerView
     lateinit var MenuManager: GridLayoutManager
-
-    // lateinit var orderList: TextView
     lateinit var orderList: RecyclerView
-    var orderMap = HashMap<String, Int>()
+    var orderMap = HashMap<Int, Int>()
     var menuList = MenuList()
     var CurrentMenu: Int = 0
     lateinit var menuAdapter: MenuAdapter
-
-    lateinit var requestLanch: ActivityResultLauncher<Intent>
+    lateinit var orderAdapter: orderAdapter
     lateinit var database: DatabaseReference
+    var data: HashMap<String, HashMap<String, Menu>> = java.util.HashMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        Log.d("Gen", "OnCreate")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.gen_menu_layout)
 
         //레이아웃의 View 가져오기
         rec_Burger = findViewById(R.id.recyclerview)
         orderList = findViewById(R.id.orderList)
+        val database = Firebase.database.reference
         val btn_burger: Button = findViewById(R.id.gen_btn_burger)
         btn_burger.setOnClickListener(this)
         val btn_side: Button = findViewById(R.id.gen_btn_side)
@@ -53,6 +61,32 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         val btn_desert: Button = findViewById(R.id.gen_btn_desert)
         btn_desert.setOnClickListener(this)
 
+        //var data:object
+        var flag = false
+        Log.d("Gen", "Access FBDB")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                data = snapshot.child("").getValue() as HashMap<String, HashMap<String, Menu>>
+                println("data.get(\"501\" in code) = ${data.get("501")}")
+                if (menuList.isInit == 0) {
+                    val dataKey = data.keys
+                    /*for(k in dataKey){
+                        val key = k.toInt()
+                        val dataMenu = data.get(k)
+                        when(key/100){
+                            1-> menuList.burgerList.add(dataMenu)
+                        }
+                    }*/
+                }
+                flag = true
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        println("data.get(\"501\" out code) = ${data.get("501")}")
+
         //adapter 연결
         MenuManager = GridLayoutManager(this, 3)
         menuAdapter = MenuAdapter(menuList.burgerList)
@@ -61,8 +95,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
             layoutManager = MenuManager
             adapter = menuAdapter
         }
-        menuAdapter.setOnItemClickListener(object :
-            kr.aifor.lyr.knu_finalproject.MenuAdapter.OnItemCLickListener {
+        menuAdapter.setOnItemClickListener(object : MenuAdapter.OnItemCLickListener {
             override fun onItemClick(v: View, data: Menu, position: Int) =
                 ItemClickLister(v, data, position)
         })
@@ -77,27 +110,30 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         val paymentButton = findViewById<Button>(R.id.gen_btn_payment)
         paymentButton.setOnClickListener {
             val intent2 = Intent(this, PaymentSelectActivity::class.java)
-            intent2.putExtra("data1", "test1")
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("orderMap", orderMap)
             intent2.putExtra("data2", "test2")
-            /* 양방향으로 인텐트하려니까 팅김;; */
-            // requestLanch.launch(intent2)
 
             startActivity(intent2)
             finish()
         }
 
-        database = Firebase.database.reference
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var curMenu = snapshot.child("burgerList/더블 불고기 버거").getValue()
-                Log.d("myLog", "${curMenu}")
+        val cancelButton = findViewById<Button>(R.id.gen_btn_cancel)
+        cancelButton.setOnClickListener {
+            val keys = orderMap.keys.toIntArray()
+            for (k in keys) {
+                Log.d("Gen", "k =${k}")
+                orderMap.remove(k)
             }
+            orderAdapter.notifyDataSetChanged()
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+        orderAdapter = orderAdapter(orderMap)
+        orderList.layoutManager = LinearLayoutManager(this)
+        orderList.adapter = orderAdapter
 
-        })
+
     }
 
     /**
@@ -137,46 +173,38 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         menuAdapter = MenuAdapter(data)
-        var Menu_List = rec_Burger.apply {
+        rec_Burger.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
             adapter = menuAdapter
         }
-        menuAdapter.setOnItemClickListener(object :
-            kr.aifor.lyr.knu_finalproject.MenuAdapter.OnItemCLickListener {
+        menuAdapter.setOnItemClickListener(object : MenuAdapter.OnItemCLickListener {
             override fun onItemClick(v: View, data: Menu, position: Int) =
                 ItemClickLister(v, data, position)
         })
     }
 
-    /**
-     * 각 메뉴 아이템 클릭리스너
-     */
+    // 각 메뉴 아이템 클릭리스너
     fun ItemClickLister(v: View, data: Menu, position: Int) {
         if (data.code / 100 == 1) {
             /**
              * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
              */
         } else {
-            var order: String = ""
-            if (orderMap.containsKey(data.name))
-                orderMap.put(data.name, orderMap.get(data.name)!! + 1)
+            if (orderMap.containsKey(data.code))
+                orderMap.put(data.code, orderMap.get(data.code)!! + 1)
             else
-                orderMap.put(data.name, 1)
-            for (key in orderMap.keys) {
-                order = order + "${key} + ${(data.price * orderMap.get(key)!!).toString()}\n"
-            }
-            // orderList.setText(order)
-            Log.d("Gen", order)
+                orderMap.put(data.code, 1)
+            orderAdapter.notifyDataSetChanged()
         }
-        Toast.makeText(
-            v.context,
-            "${data.name}\n${data.price}",
-            Toast.LENGTH_SHORT
-        ).show()
-        Log.d("Gen", "${data.name}, ${data.price}")
+
     }
+
 }
+
+/**
+ * database에서 data 가져오는거
+ */
 /**
  * 나중에 Menu의 버거리스트 만드는거 다른데로 옮기기기
  */

@@ -23,9 +23,10 @@ class HomeActivity : AppCompatActivity() {
     lateinit var btn_option: Button
 
     lateinit var requestLanch: ActivityResultLauncher<Intent>
-    var currentMode: String = "general"
-
     lateinit var database: DatabaseReference
+
+    var currentMode: String = "general"
+    var menuList = MenuList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,5 +137,41 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun initDatabase() {
+        Log.d("myLog", "${menuList.burgerList.size}")
+        for (i in 0 until menuList.burgerList.size) {
+            database.child("${menuList.burgerList[i].code}")
+                .setValue(menuList.burgerList[i])
+        }
+
+        Log.d("myLog", "${menuList.sideList.size}")
+        for (i in 0 until menuList.sideList.size) {
+            database.child("${menuList.sideList[i].code}")
+                .setValue(menuList.sideList[i])
+        }
+
+        Log.d("myLog", "${menuList.drinkList.size}")
+        for (i in 0 until menuList.drinkList.size) {
+            database.child("${menuList.drinkList[i].code}")
+                .setValue(menuList.drinkList[i])
+        }
+
+        Log.d("myLog", "${menuList.coffeeList.size}")
+        for (i in 0 until menuList.coffeeList.size) {
+            database.child("${menuList.coffeeList[i].code}")
+                .setValue(menuList.coffeeList[i])
+        }
+
+        Log.d("myLog", "${menuList.desertList.size}")
+        for (i in 0 until menuList.desertList.size) {
+            database.child("${menuList.desertList[i].code}")
+                .setValue(menuList.desertList[i])
+        }
+
+        database.child("totalOrderNum").setValue(0)
+        database.child("totalSellPrice").setValue(0)
+    }
+
 
 }
