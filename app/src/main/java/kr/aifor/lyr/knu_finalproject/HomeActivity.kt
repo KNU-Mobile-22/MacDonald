@@ -67,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
                     fireBaseData.put(key!!, menuVal!!)
                 }
 
-                println("data setting complete!")
+                Log.d("myLog", "firebase init complete!")
                 /*
                 println(data)
                 for ((key, value) in data) {

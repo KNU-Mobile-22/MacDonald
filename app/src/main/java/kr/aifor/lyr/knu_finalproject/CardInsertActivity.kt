@@ -16,12 +16,12 @@ class CardInsertActivity : AppCompatActivity() {
         val data2 = intent.getStringExtra("data2")
         val fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         val orderMap = intent.getSerializableExtra("orderMap") as HashMap<Int, Int>
-        val orderText : TextView = findViewById(R.id.cardInsertOrderList)
+        val orderText: TextView = findViewById(R.id.cardInsertOrderList)
 
         Log.d("intent", "PaymentSelect -> CardInsert: ${data1}, ${data2}")
 
         //주문내역 출력
-        var orderList :String = ""
+        var orderList: String = ""
         val keys = orderMap.keys
         var priceSum = 0
         for (key in keys) {
@@ -30,9 +30,9 @@ class CardInsertActivity : AppCompatActivity() {
             val name = menu.name
             val price: Int = menu.price * num
             priceSum += price
-            orderList+= "${name} : ${num}개 : ${price}원\n"
+            orderList += "${name} : ${num}개 : ${price}원\n"
         }
-        orderList+="                  총액 : ${priceSum}"
+        orderList += "                  총액 : ${priceSum}"
         orderText.setText(orderList)
         Log.d("intent", "PaymentSelect -> CardInsert: ${data1}, ${data2}")
 

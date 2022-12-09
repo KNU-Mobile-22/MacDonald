@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ import com.google.firebase.database.ktx.database
 // import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
+import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
 import kotlin.collections.HashMap
 
 /**
@@ -36,6 +39,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var menuAdapter: MenuAdapter
     lateinit var orderAdapter: orderAdapter
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
+
+    lateinit var requestLaunch: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -60,6 +65,22 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         Log.d("myLog", fireBaseData.javaClass.name)
+
+        requestLaunch = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == RESULT_OK) {
+                var resultData: Int = it.data!!.getIntExtra("result", 0)
+                Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
+
+
+                if (orderMap.containsKey(resultData))
+                    orderMap.put(resultData, orderMap.get(resultData)!! + 1)
+                else
+                    orderMap.put(resultData, 1)
+                orderAdapter.notifyDataSetChanged()
+            }
+        }
 
         //뒤로가기
         val backButton = findViewById<ImageButton>(R.id.gen_btn_back)
@@ -168,6 +189,18 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
             /**
              * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
              */
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("burgerCode", data.code)
+            // intent2.putExtra("orderMap", orderMap)
+            // intent2.putExtra("data2", "test2")
+            Log.d("burgerCode", "${data.code}")
+
+            // startActivity(intent2)
+            requestLaunch.launch(intent2)
+
         } else {
             if (orderMap.containsKey(data.code))
                 orderMap.put(data.code, orderMap.get(data.code)!! + 1)
