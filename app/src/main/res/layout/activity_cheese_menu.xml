@@ -181,8 +181,8 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/orderListView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/easy_orderList_cheese"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -197,12 +197,14 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/cheese_complete_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="결제하기"
+                    android:text="선택완료"
                     android:textSize="30dp" />
 
                 <Button
+                    android:id="@+id/cheese_cancle_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="취소하기"

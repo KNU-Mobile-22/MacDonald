@@ -15,6 +15,7 @@ public class Menu(
  */
 class MenuList {
     var isInit = 0
+
     var burgerList =
         //arrayListOf<Menu>()
         arrayOf(

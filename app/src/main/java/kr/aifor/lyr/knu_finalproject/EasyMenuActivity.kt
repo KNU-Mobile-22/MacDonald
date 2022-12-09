@@ -123,6 +123,19 @@ class EasyMenuActivity : AppCompatActivity() {
             // startActivity(intent2)
         }
 
+        var paymentButton = findViewById<Button>(R.id.easy_payment_btn)
+        paymentButton.setOnClickListener {
+            val intent2 = Intent(this, PaymentSelectActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("orderMap", orderMap)
+            intent2.putExtra("data2", "test2")
+
+            startActivity(intent2)
+            finish()
+        }
+
         val cancelButton = findViewById<Button>(R.id.easy_cancle_btn)
         cancelButton.setOnClickListener {
             val keys = orderMap.keys.toIntArray()
