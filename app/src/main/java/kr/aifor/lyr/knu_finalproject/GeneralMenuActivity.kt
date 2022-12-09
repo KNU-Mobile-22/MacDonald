@@ -73,7 +73,6 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                 var resultData: Int = it.data!!.getIntExtra("result", 0)
                 Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
 
-
                 if (orderMap.containsKey(resultData))
                     orderMap.put(resultData, orderMap.get(resultData)!! + 1)
                 else

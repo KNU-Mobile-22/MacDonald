@@ -28,6 +28,7 @@
             android:orientation="horizontal">
 
             <GridLayout
+                android:id="@+id/fish_107_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -35,7 +36,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -56,6 +57,7 @@
             </GridLayout>
 
             <GridLayout
+                android:id="@+id/fish_106_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -63,7 +65,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
 
@@ -22,6 +23,14 @@ class SelectSetActivity : AppCompatActivity() {
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         var burgerCode = intent.getIntExtra("burgerCode", 0)
+
+        // 버거 이름 설정
+        binding.selectTxt.setText(fireBaseData.get(burgerCode.toString())!!.name)
+
+        // 버거 그림 설정
+        var imageID = resources.getIdentifier("c${burgerCode}", "drawable", packageName)
+        Log.d("imageID", "${imageID}")
+        binding.selectImg.setImageResource(imageID)
 
         //단품, 세트 선택
         binding.singlebtn.setOnClickListener {
@@ -177,7 +186,7 @@ class SelectSetActivity : AppCompatActivity() {
                     var resultCode =
                         (burgerCode.toString() + currentSideCode.toString() + currentDrinkCode.toString()).toInt()
                     Log.d("resultCode", "resultCode: ${resultCode}")
-                    intent.putExtra("result", burgerCode)
+                    intent.putExtra("result", resultCode)
                     setResult(RESULT_OK, intent)
                     finish()
                 }

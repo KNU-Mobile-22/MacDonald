@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class BeafMenuActivity : AppCompatActivity() {
 
@@ -31,6 +33,7 @@ class BeafMenuActivity : AppCompatActivity() {
 
         orderMap = intent.getSerializableExtra("orderMap") as HashMap<Int, Int>
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+
 
         orderAdapter = orderAdapter(orderMap, fireBaseData)
         rec_orderList.layoutManager = LinearLayoutManager(this)

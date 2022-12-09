@@ -1,9 +1,14 @@
 package kr.aifor.lyr.knu_finalproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.GridLayout
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,6 +20,7 @@ class ChickenMenuActivity : AppCompatActivity() {
     lateinit var completeButton: Button
     lateinit var cancleButton: Button
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
+    lateinit var requestLaunch: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +50,76 @@ class ChickenMenuActivity : AppCompatActivity() {
                 orderMap.remove(k)
             }
             orderAdapter.notifyDataSetChanged()
+        }
+
+        requestLaunch = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == RESULT_OK) {
+                var resultData: Int = it.data!!.getIntExtra("result", 0)
+                Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
+
+                if (orderMap.containsKey(resultData))
+                    orderMap.put(resultData, orderMap.get(resultData)!! + 1)
+                else
+                    orderMap.put(resultData, 1)
+                orderAdapter.notifyDataSetChanged()
+            }
+        }
+
+        var burger_103_grid = findViewById<GridLayout>(R.id.chicken_103_grid)
+        burger_103_grid.setOnClickListener {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("burgerCode", 103)
+
+            requestLaunch.launch(intent2)
+        }
+
+        var burger_104_grid = findViewById<GridLayout>(R.id.chicken_104_grid)
+        burger_104_grid.setOnClickListener {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("burgerCode", 104)
+
+            requestLaunch.launch(intent2)
+        }
+
+        var burger_111_grid = findViewById<GridLayout>(R.id.chicken_111_grid)
+        burger_111_grid.setOnClickListener {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("burgerCode", 111)
+
+            requestLaunch.launch(intent2)
+        }
+
+        var burger_112_grid = findViewById<GridLayout>(R.id.chicken_112_grid)
+        burger_112_grid.setOnClickListener {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("burgerCode", 112)
+
+            requestLaunch.launch(intent2)
+        }
+
+        var burger_114_grid = findViewById<GridLayout>(R.id.chicken_114_grid)
+        burger_114_grid.setOnClickListener {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("burgerCode", 114)
+
+            requestLaunch.launch(intent2)
         }
     }
 }

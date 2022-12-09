@@ -27,7 +27,6 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
     var data = firebaseData
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.rec_orderlist, parent, false)
@@ -41,7 +40,7 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
         val num = orderList.get(code)
         val order = holder as orderHolder
 
-        Log.d("myLog!!", "code: ${code.javaClass.name}")
+        Log.d("myLog!!", "code: ${code}")
         Log.d("myLog!!", "data: ${data[code.toString()]}")
 
         /**
@@ -81,11 +80,26 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
 
         var name: String
         var price: Int
-        if (data.get(code.toString()) == null) {
+
+        if ((data.get(code.toString()) == null) && code < 1000) {
             name = "null"
             price = -1
             Log.d("Gen", "num : " + num!!.javaClass.name)
             Log.d("Gen", "code : ${code.javaClass.name}")
+        } else if (code > 1000) {
+            var burgerCode = code / 1000000
+            var sideCode = (code % 1000000) / 1000
+            var drinkCode = code % 1000
+
+            Log.d("codeLog", "${burgerCode}, ${sideCode}, ${drinkCode}}")
+
+            var burgerName = data.get(burgerCode.toString())!!.name
+            var sideName = data.get(sideCode.toString())!!.name
+            var drinkName = data.get(drinkCode.toString())!!.name
+
+            name = burgerName + " 세트(" + sideName + ", " + drinkName + ")"
+            price = 0
+
         } else {
             // name = data.get(code.toString())!!.get("name")!!
             name = data.get(code.toString())!!.name
@@ -98,7 +112,7 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
              * ex) keys: [301, 302, 303] 상태에서 304 메뉴를 클릭
              * [304, 301, 302, 303] 이 되어서 현재 code 값이 303이 아닌 304가 됨
              */
-            price = 0
+            price = data.get(code.toString())!!.price
             println("keys: " + keys)
             println("current code: " + code)
             println(data.get(code.toString())!!.price)
@@ -111,7 +125,7 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
         order.plusButton.setOnClickListener(textListener)
         order.minusButton.setOnClickListener(textListener)
         order.cancelButton.setOnClickListener(textListener)
-        order.orderPrice.setText(price.toString())
+        order.orderPrice.setText(price.toString() + "원")
     }
 
     override fun getItemCount(): Int {

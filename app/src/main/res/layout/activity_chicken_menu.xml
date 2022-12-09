@@ -28,6 +28,7 @@
             android:orientation="horizontal">
 
             <GridLayout
+                android:id="@+id/chicken_103_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -35,7 +36,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -56,6 +57,7 @@
             </GridLayout>
 
             <GridLayout
+                android:id="@+id/chicken_104_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -63,7 +65,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -84,6 +86,7 @@
             </GridLayout>
 
             <GridLayout
+                android:id="@+id/chicken_114_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -91,7 +94,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -122,6 +125,7 @@
             android:orientation="horizontal">
 
             <GridLayout
+                android:id="@+id/chicken_112_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -129,7 +133,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -150,6 +154,7 @@
             </GridLayout>
 
             <GridLayout
+                android:id="@+id/chicken_111_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -157,7 +162,7 @@
                 android:orientation="vertical"
                 android:rowCount="3">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"

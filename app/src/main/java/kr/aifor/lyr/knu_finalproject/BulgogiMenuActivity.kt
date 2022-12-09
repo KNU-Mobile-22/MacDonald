@@ -73,7 +73,7 @@ class BulgogiMenuActivity : AppCompatActivity() {
             if (orderMap == null)
                 Log.d("Gen", "OrderMap is Null")
             intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 101)
+            intent2.putExtra("burgerCode", 115)
 
             requestLaunch.launch(intent2)
         }
@@ -84,7 +84,7 @@ class BulgogiMenuActivity : AppCompatActivity() {
             if (orderMap == null)
                 Log.d("Gen", "OrderMap is Null")
             intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 102)
+            intent2.putExtra("burgerCode", 116)
 
             requestLaunch.launch(intent2)
         }
@@ -95,7 +95,7 @@ class BulgogiMenuActivity : AppCompatActivity() {
             if (orderMap == null)
                 Log.d("Gen", "OrderMap is Null")
             intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 110)
+            intent2.putExtra("burgerCode", 117)
 
             requestLaunch.launch(intent2)
         }
