@@ -12,302 +12,18 @@
         android:textSize="35dp"
         android:textStyle="bold" />
 
-    <ScrollView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/easy_side_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:columnCount="3"
-                android:orientation="horizontal">
 
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c201" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="후렌치 후라이\n스몰" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="1900원" />
-                </GridLayout>
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c202" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="후렌치 후라이\n미디움" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="2600원" />
-                </GridLayout>
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c203" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="후렌치 후라이\n라지" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="3200원" />
-                </GridLayout>
-            </GridLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:columnCount="3"
-                android:orientation="horizontal">
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c204" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="치킨 토마토\n스낵랩" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="3000원" />
-                </GridLayout>
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c205" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="코우슬로\n" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="2700원" />
-                </GridLayout>
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c206" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="골든 모짜렐라\n치즈스틱 2조각" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="3300원" />
-                </GridLayout>
-            </GridLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:columnCount="3"
-                android:orientation="horizontal">
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c207" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="골든 모짜렐라\n치즈스틱 4조각" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="5000원" />
-                </GridLayout>
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c208" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="맥너겟 4조각\n" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="3000원" />
-                </GridLayout>
-
-                <GridLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical"
-                    android:rowCount="3">
-
-                    <ImageButton
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:padding="0dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/c209" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="상하이 치킨\n스낵랩" />
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="3200원" />
-                </GridLayout>
-            </GridLayout>
-        </LinearLayout>
-
-    </ScrollView>
-
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -338,12 +54,10 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/orderListView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/easy_orderList_side"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:textSize="20dp" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -354,12 +68,14 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/side_complete_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="결제하기"
+                    android:text="선택완료"
                     android:textSize="30dp" />
 
                 <Button
+                    android:id="@+id/side_cancle_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="취소하기"

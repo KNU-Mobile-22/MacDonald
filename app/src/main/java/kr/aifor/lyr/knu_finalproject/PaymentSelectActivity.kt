@@ -13,6 +13,8 @@ class PaymentSelectActivity : AppCompatActivity() {
 
         val data1 = intent.getStringExtra("data1")
         val data2 = intent.getStringExtra("data2")
+        val fireBaseData = intent.getSerializableExtra("fireBaseData")
+        val orderMap = intent.getSerializableExtra("orderMap")
 
         Log.d("intent", "GeneralMenu -> PaymentSelect: ${data1}, ${data2}")
 
@@ -22,6 +24,8 @@ class PaymentSelectActivity : AppCompatActivity() {
             // CardInsertActivity로 데이터 전달
             intent2.putExtra("data1", data1)
             intent2.putExtra("data2", data2)
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("orderMap", orderMap)
             startActivity(intent2)
             finish()
         }

@@ -1,8 +1,12 @@
 package kr.aifor.lyr.knu_finalproject
 
-public class Menu(var name: String, var price: Int, var code: Int, var image_uri: Int) {
+public class Menu(
+    var name: String = "",
+    var price: Int = 0,
+    var code: Int = 0,
+    var image_uri: Int = 0,
     var left: Int = 50
-}
+):java.io.Serializable
 
 /**
  * MenuList 클래스

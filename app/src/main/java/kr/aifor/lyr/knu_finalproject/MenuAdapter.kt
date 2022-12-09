@@ -30,6 +30,7 @@ class MenuAdapter(var MenuList: Array<Menu>) : RecyclerView.Adapter<RecyclerView
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        Log.d("myLog", "onBindViewHolder(): ${position}")
         val Menu = MenuList[position]
         val MenuViewHolder = holder as MyViewHolder
         MenuViewHolder.Menu_name.text = Menu.name

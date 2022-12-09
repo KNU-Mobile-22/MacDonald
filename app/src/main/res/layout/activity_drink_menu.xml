@@ -3,231 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:src="@android:drawable/ic_menu_revert" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:src="@android:drawable/ic_menu_help" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="음료"
+        android:textSize="35dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
+        android:layout_weight="2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="음료"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/easy_drink_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:columnCount="3"
-                    android:useDefaultMargins="true">
-
-                    <Button
-                        android:id="@+id/btn_beafBurger1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c301"
-                        android:text="딸기 칠러\n3700원"
-                        android:textSize="20dp" />
-
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c302"
-                        android:text="제주 한라봉 칠러\n3700원"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c303"
-                        android:text="코카 콜라\n2200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c304"
-                        android:text="코카 콜라 제로\n2200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c305"
-                        android:text="환타\n2200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c306"
-                        android:text="스프라이트\n2200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c307"
-                        android:text="스프라이트 제로\n2200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c308"
-                        android:text="딸기 쉐이크\n3500"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c309"
-                        android:text="초코 쉐이크\n3500"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c401"
-                        android:text="바닐라 라떼\n4700"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c402"
-                        android:text="아이스 바닐라 라떼\n4200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c403"
-                        android:text="카페라떼\n3700"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c405"
-                        android:text="아메리카노\n3200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c406"
-                        android:text="드립 커피\n2700"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c407"
-                        android:text="아이스 드립 커피\n2200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c408"
-                        android:text="아이스 아메리카노\n3200"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c409"
-                        android:text="아이스 카페 라떼\n3700"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:drawableTop="@drawable/c410"
-                        android:text="에스프레소\n2400"
-                        android:textSize="20dp" />
-
-                </GridLayout>
-
-
-            </ScrollView>
-
-
-        </LinearLayout>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
@@ -236,12 +31,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="일반 모드로 돌아가기"
-            android:textSize="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -266,8 +55,8 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/orderListView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/easy_orderList_drink"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -282,12 +71,14 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/drink_complete_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="결제하기"
+                    android:text="선택완료"
                     android:textSize="30dp" />
 
                 <Button
+                    android:id="@+id/drink_cancle_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="취소하기"

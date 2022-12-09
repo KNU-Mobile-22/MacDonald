@@ -19,19 +19,29 @@ import com.google.firebase.ktx.Firebase
  * 2. 개 미친 java.lang.Long cannot be cast to java.lang.String 해결하기
  *      -> 가격 구현하기
  */
-var menu = MenuList()
+var menu2 = MenuList()
 
-class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<String, Menu>) :
+class CustomAdapter(var orderList: HashMap<Int, Int>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var data = firebaseData
-
-
+    // lateinit var database: DatabaseReference
+    var data = HashMap<String, HashMap<String, String>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.rec_orderlist, parent, false)
+        /*
+        database = Firebase.database.reference
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                data = snapshot.child("").getValue() as HashMap<String, HashMap<String, String>>
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+         */
         return orderHolder(view)
     }
 
@@ -41,8 +51,8 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
         val num = orderList.get(code)
         val order = holder as orderHolder
 
-        Log.d("myLog!!", "code: ${code.javaClass.name}")
-        Log.d("myLog!!", "data: ${data[code.toString()]}")
+        println("keys: " + keys)
+        println("current code: " + code)
 
         /**
          * 요수정사항 : 가격 변경
@@ -87,10 +97,9 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
             Log.d("Gen", "num : " + num!!.javaClass.name)
             Log.d("Gen", "code : ${code.javaClass.name}")
         } else {
-            // name = data.get(code.toString())!!.get("name")!!
-            name = data.get(code.toString())!!.name
+            name = data.get(code.toString())!!.get("name")!!
             Log.d("Gen", "num : " + num!!.javaClass.name)
-            //Log.d("Gen", "code : ${data.get(code.toString())!!.get("price")!!.javaClass.name}")
+            Log.d("Gen", "code : ${data.get(code.toString())!!.get("price")!!.javaClass.name}")
             //Log.d("Gen", "Type ? : ${data.get(code.toString())!!.get("price")!!.toInt().javaClass.name}")
 
             /**
@@ -99,9 +108,8 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
              * [304, 301, 302, 303] 이 되어서 현재 code 값이 303이 아닌 304가 됨
              */
             price = 0
-            println("keys: " + keys)
-            println("current code: " + code)
-            println(data.get(code.toString())!!.price)
+
+            println(data.get(code.toString())!!.get("price"))
 
             //var temp : Long = data.get(code.toString())!!.get("price")!!.toLong()
             //Log.d("Gen", "string = ${temp!!.javaClass.name}")
@@ -126,7 +134,6 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
         val plusButton: TextView = layout.findViewById(R.id.plus)
         val minusButton: TextView = layout.findViewById(R.id.minus)
         val cancelButton: TextView = layout.findViewById(R.id.cancel)
-
 
         fun bind(item: Menu) {
             val name = item.name

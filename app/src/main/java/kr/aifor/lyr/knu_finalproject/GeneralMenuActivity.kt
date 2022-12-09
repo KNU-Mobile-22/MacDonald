@@ -22,8 +22,6 @@ import kotlin.collections.HashMap
 /**
  * TaskList
  * 1. 버거 주문시 세부메뉴로 Intent
- * 2. 코루틴 구현하기
- * 3. Intent로 넘기기
  */
 
 
@@ -37,8 +35,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
     var CurrentMenu: Int = 0
     lateinit var menuAdapter: MenuAdapter
     lateinit var orderAdapter: orderAdapter
-    lateinit var database: DatabaseReference
-    var data: HashMap<String, HashMap<String, Menu>> = java.util.HashMap()
+    var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -49,7 +46,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         //레이아웃의 View 가져오기
         rec_Burger = findViewById(R.id.recyclerview)
         orderList = findViewById(R.id.orderList)
-        val database = Firebase.database.reference
+
         val btn_burger: Button = findViewById(R.id.gen_btn_burger)
         btn_burger.setOnClickListener(this)
         val btn_side: Button = findViewById(R.id.gen_btn_side)
@@ -61,33 +58,43 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         val btn_desert: Button = findViewById(R.id.gen_btn_desert)
         btn_desert.setOnClickListener(this)
 
-        //var data:object
-        var flag = false
-        Log.d("Gen", "Access FBDB")
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                data = snapshot.child("").getValue() as HashMap<String, HashMap<String, Menu>>
-                println("data.get(\"501\" in code) = ${data.get("501")}")
-                if (menuList.isInit == 0) {
-                    val dataKey = data.keys
-                    /*for(k in dataKey){
-                        val key = k.toInt()
-                        val dataMenu = data.get(k)
-                        when(key/100){
-                            1-> menuList.burgerList.add(dataMenu)
-                        }
-                    }*/
-                }
-                flag = true
+        fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+        Log.d("myLog", fireBaseData.javaClass.name)
+
+        //뒤로가기
+        val backButton = findViewById<ImageButton>(R.id.gen_btn_back)
+        backButton.setOnClickListener {
+            intent.putExtra("result", "test")
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+
+        //결제하기
+        val paymentButton = findViewById<Button>(R.id.gen_btn_payment)
+        paymentButton.setOnClickListener {
+            val intent2 = Intent(this, PaymentSelectActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("orderMap", orderMap)
+            intent2.putExtra("data2", "test2")
+
+            startActivity(intent2)
+            finish()
+        }
+
+        //취소하기 - 주문내역 사라짐
+        val cancelButton = findViewById<Button>(R.id.gen_btn_cancel)
+        cancelButton.setOnClickListener {
+            val keys = orderMap.keys.toIntArray()
+            for (k in keys) {
+                Log.d("Gen", "k =${k}")
+                orderMap.remove(k)
             }
+            orderAdapter.notifyDataSetChanged()
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        println("data.get(\"501\" out code) = ${data.get("501")}")
-
-        //adapter 연결
+        //menuAdapter 연결
         MenuManager = GridLayoutManager(this, 3)
         menuAdapter = MenuAdapter(menuList.burgerList)
         var Menu_List = rec_Burger.apply {
@@ -99,37 +106,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
             override fun onItemClick(v: View, data: Menu, position: Int) =
                 ItemClickLister(v, data, position)
         })
-
-        val backButton = findViewById<ImageButton>(R.id.gen_btn_back)
-        backButton.setOnClickListener {
-            intent.putExtra("result", "test")
-            setResult(RESULT_OK, intent)
-            finish()
-        }
-
-        val paymentButton = findViewById<Button>(R.id.gen_btn_payment)
-        paymentButton.setOnClickListener {
-            val intent2 = Intent(this, PaymentSelectActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("orderMap", orderMap)
-            intent2.putExtra("data2", "test2")
-
-            startActivity(intent2)
-            finish()
-        }
-
-        val cancelButton = findViewById<Button>(R.id.gen_btn_cancel)
-        cancelButton.setOnClickListener {
-            val keys = orderMap.keys.toIntArray()
-            for (k in keys) {
-                Log.d("Gen", "k =${k}")
-                orderMap.remove(k)
-            }
-            orderAdapter.notifyDataSetChanged()
-        }
-
-        orderAdapter = orderAdapter(orderMap)
+        //orderAdapter 연결
+        orderAdapter = orderAdapter(orderMap, fireBaseData)
         orderList.layoutManager = LinearLayoutManager(this)
         orderList.adapter = orderAdapter
 
