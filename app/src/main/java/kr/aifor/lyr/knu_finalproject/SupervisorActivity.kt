@@ -3,6 +3,7 @@ package kr.aifor.lyr.knu_finalproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,6 +18,7 @@ class SupervisorActivity : AppCompatActivity() {
     lateinit var allSellView: TextView
     lateinit var allSumView: TextView
     lateinit var leftText: TextView
+    lateinit var backButton: Button
     var menuList = MenuList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,13 @@ class SupervisorActivity : AppCompatActivity() {
                 Log.d("myLog", "totalSellMoney: ${totalSellMoney}")
                 allSumView = findViewById<TextView>(R.id.all_sum)
                 allSumView.setText("${totalSellMoney}")
+
+                backButton = findViewById(R.id.supervisor_back_btn)
+                backButton.setOnClickListener {
+                    intent.putExtra("result", "result_by_SupervisorActivity")
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
 
                 for (i in 0 until menuList.burgerList.size) {
                     var resID = resources.getIdentifier("left_" + (i + 101), "id", packageName)

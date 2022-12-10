@@ -22,14 +22,17 @@ class HomeActivity : AppCompatActivity() {
     lateinit var btn_take_out: Button
     lateinit var btn_option: Button
 
+    var orderCount: Int = -1
+    var orderPrice: Int = -1
+    var loc: String = ""
+
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
-    lateinit var database: DatabaseReference
 
     var currentMode: String = "general"
     var menuList = MenuList()
 
-    // var data: HashMap<String, HashMap<String, Menu>> = java.util.HashMap()
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
+    lateinit var database: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,59 +43,17 @@ class HomeActivity : AppCompatActivity() {
         btn_take_out = findViewById(R.id.take_out)
         btn_main = findViewById(R.id.main)
         btn_option = findViewById(R.id.option)
+        database = Firebase.database.reference
+
+        // initDatabase()
 
         var Str = (menuList.burgerList[0].javaClass.name)
-        // Log.d("myLog", "버거리스트 0의 타입은? ${Str}")
+        fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+        orderCount = intent.getIntExtra("totalOrderNum", 0)
+        orderPrice = intent.getIntExtra("totalSellPrice", 0)
 
-        database = Firebase.database.reference
-        database.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // var curMenu = snapshot.child("burgerList/1955버거").getValue()
-                // Log.d("myLog", "curMenu: ${curMenu}")
-
-                // var totalSellCnt = snapshot.child("stockData/totalSellCount").getValue()
-                // Log.d("myLog", "totalSellCnt: ${totalSellCnt}")
-
-                /**
-                 * data라는 해시맵에 메뉴 코드를 key, Menu 클래스를 value로 하여
-                 * 데이터를 삽입
-                 */
-                for (item in snapshot.children) {
-                    if (item.key.equals("totalOrderNum"))
-                        break
-                    // print(item.key)
-                    // println(item.value)
-                    val key = item.key
-                    val menuVal = item.getValue(Menu::class.java)
-                    fireBaseData.put(key!!, menuVal!!)
-                }
-
-                Log.d("myLog", "firebase init complete!")
-                /*
-                println(data)
-                for ((key, value) in data) {
-                    println("전체 : ${key} : ${value}")
-                }
-                 */
-
-                /*
-                data = snapshot.child("").getValue() as HashMap<String, Menu>
-                println(data.get("101")?.javaClass?.name)
-                var data2 = snapshot.child("101").getValue(Menu::class.java)
-
-                var data2 = data.get("101")
-                if (data2 != null) {
-                    // println(data2.javaClass.name)
-                }
-                */
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
+        Log.d("Gen", "Home = ${fireBaseData}")
+        Log.d("Gen", "Home = ${fireBaseData.get("101")!!.name}")
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -104,16 +65,14 @@ class HomeActivity : AppCompatActivity() {
 
         btn_take_in.setOnClickListener {
             Toast.makeText(applicationContext, "매장 버튼 Clicked", Toast.LENGTH_SHORT).show()
-
+            loc = "takeIn"
             if (currentMode.equals("general")) {
-                val intent = Intent(this, GeneralMenuActivity::class.java)
-                intent.putExtra("data1", "takeIn")
-                intent.putExtra("fireBaseData", fireBaseData)
+                var intent = Intent(this, GeneralMenuActivity::class.java)
+                intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
             } else if (currentMode.equals("easy")) {
-                val intent = Intent(this, EasyMenuActivity::class.java)
-                intent.putExtra("data1", "takeIn")
-                intent.putExtra("fireBaseData", fireBaseData)
+                var intent = Intent(this, EasyMenuActivity::class.java)
+                intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
             }
         }
@@ -121,15 +80,14 @@ class HomeActivity : AppCompatActivity() {
         btn_take_out.setOnClickListener {
             Toast.makeText(applicationContext, "포장 버튼 Clicked", Toast.LENGTH_SHORT).show()
 
+            loc = "takeOut"
             if (currentMode.equals("general")) {
-                val intent = Intent(this, GeneralMenuActivity::class.java)
-                intent.putExtra("data1", "takeOut")
-                intent.putExtra("fireBaseData", fireBaseData)
+                var intent = Intent(this, GeneralMenuActivity::class.java)
+                intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
             } else if (currentMode.equals("easy")) {
-                val intent = Intent(this, EasyMenuActivity::class.java)
-                intent.putExtra("data1", "takeOut")
-                intent.putExtra("fireBaseData", fireBaseData)
+                var intent = Intent(this, EasyMenuActivity::class.java)
+                intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
             }
         }
@@ -144,17 +102,6 @@ class HomeActivity : AppCompatActivity() {
 
     fun btnClicked(v: View) {
         var btnText: String
-
-//        if (v.id == R.id.option) {
-//            btnText = btn_option.text.toString()
-//            if (btnText == "간편 모드") {
-//                btn_option.text = "포장 및 매장을 선택해주세요"
-//                //btn_option.setTextSize(10)
-//            } else {
-//                btn_option.text = "간편 모드"
-//            }
-//            Toast.makeText(applicationContext, "Button Clicked", Toast.LENGTH_SHORT).show()
-//        }
 
         when (v.id) {
             R.id.option -> {
@@ -175,6 +122,15 @@ class HomeActivity : AppCompatActivity() {
                 ).show()
             }
         }
+    }
+
+    fun makeIntent(intent: Intent, loc: String): Intent {
+        intent.putExtra("loc", loc)
+        intent.putExtra("fireBaseData", fireBaseData)
+        intent.putExtra("totalOrderNum", orderCount)
+        intent.putExtra("totalSellPrice", orderPrice)
+
+        return intent
     }
 
     fun initDatabase() {

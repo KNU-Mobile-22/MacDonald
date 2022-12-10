@@ -38,7 +38,7 @@ class DessertMenuActivity : AppCompatActivity() {
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
 
         MenuManager = GridLayoutManager(this, 3)
-        menuAdapter = MenuAdapter(menuList.desertList)
+        menuAdapter = MenuAdapter(menuList.desertList, fireBaseData)
         var Menu_List = rec_drink.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager

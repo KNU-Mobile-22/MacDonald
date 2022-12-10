@@ -64,7 +64,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         btn_desert.setOnClickListener(this)
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
-        Log.d("myLog", fireBaseData.javaClass.name)
+        Log.d("Gen", "Gen = ${fireBaseData}")
+        Log.d("Gen", "Gen = ${fireBaseData.get("101")!!.name}")
 
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -116,7 +117,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
         //menuAdapter 연결
         MenuManager = GridLayoutManager(this, 3)
-        menuAdapter = MenuAdapter(menuList.burgerList)
+        menuAdapter = MenuAdapter(menuList.burgerList, fireBaseData)
         var Menu_List = rec_Burger.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
@@ -170,7 +171,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                 CurrentMenu = 4
             }
         }
-        menuAdapter = MenuAdapter(data)
+        menuAdapter = MenuAdapter(data, fireBaseData)
         rec_Burger.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
@@ -184,32 +185,36 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     // 각 메뉴 아이템 클릭리스너
     fun ItemClickLister(v: View, data: Menu, position: Int) {
-        if (data.code / 100 == 1) {
-            /**
-             * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
-             */
-            val intent2 = Intent(this, SelectSetActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", data.code)
-            // intent2.putExtra("orderMap", orderMap)
-            // intent2.putExtra("data2", "test2")
-            Log.d("burgerCode", "${data.code}")
+        if(fireBaseData.get((data.code).toString())!!.left==0){
+            Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            if (data.code / 100 == 1) {
+                /**
+                 * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
+                 */
+                val intent2 = Intent(this, SelectSetActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("burgerCode", data.code)
+                // intent2.putExtra("orderMap", orderMap)
+                // intent2.putExtra("data2", "test2")
+                Log.d("burgerCode", "${data.code}")
 
-            // startActivity(intent2)
-            requestLaunch.launch(intent2)
-
-        } else {
-            if (orderMap.containsKey(data.code))
-                orderMap.put(data.code, orderMap.get(data.code)!! + 1)
-            else
-                orderMap.put(data.code, 1)
-            orderAdapter.notifyDataSetChanged()
+                // startActivity(intent2)
+                requestLaunch.launch(intent2)
+            }
+            else {
+                if (orderMap.containsKey(data.code))
+                    orderMap.put(data.code, orderMap.get(data.code)!! + 1)
+                else
+                    orderMap.put(data.code, 1)
+                orderAdapter.notifyDataSetChanged()
+            }
         }
 
     }
-
 }
 
 /**

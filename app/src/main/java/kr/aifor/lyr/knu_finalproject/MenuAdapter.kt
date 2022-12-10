@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(var MenuList: Array<Menu>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter(var MenuList: Array<Menu>, var FireBaseData: HashMap<String, Menu>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface OnItemCLickListener {
         fun onItemClick(v: View, data: Menu, position: Int)
@@ -35,9 +35,13 @@ class MenuAdapter(var MenuList: Array<Menu>) : RecyclerView.Adapter<RecyclerView
         val MenuViewHolder = holder as MyViewHolder
         MenuViewHolder.Menu_name.text = Menu.name
         MenuViewHolder.Menu_price.text = Menu.price.toString() + "원"
-        MenuViewHolder.Menu_IMG.setImageResource(Menu.image_uri)
+        if(FireBaseData.get((Menu.code).toString())!!.left==0){
+            MenuViewHolder.Menu_IMG.setImageResource(R.drawable.soldout_img)
+        }
+        else {
+            MenuViewHolder.Menu_IMG.setImageResource(Menu.image_uri)
+        }
         holder.bind(Menu)
-
     }
 
     override fun getItemCount(): Int {

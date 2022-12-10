@@ -23,6 +23,7 @@ class SelectSetActivity : AppCompatActivity() {
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         var burgerCode = intent.getIntExtra("burgerCode", 0)
+        Log.d("Gen", "Select = ${fireBaseData.get("101")!!.name}")
 
         // 버거 이름 설정
         binding.selectTxt.setText(fireBaseData.get(burgerCode.toString())!!.name)

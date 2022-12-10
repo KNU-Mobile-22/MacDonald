@@ -95,6 +95,6 @@ class MenuList {
             Menu("오레오 맥플러리", 3400, 507, R.drawable.c507),
             Menu("딸기 선데이 아이스크림", 2500, 508, R.drawable.c508),
             Menu("초코 선데이 아이스크림", 2500, 509, R.drawable.c509),
-            Menu("바닐라 선데이 아이스크림", 250, 510, R.drawable.c510)
+            Menu("바닐라 선데이 아이스크림", 2500, 510, R.drawable.c510)
         )
 }

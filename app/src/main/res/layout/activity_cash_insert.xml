@@ -12,14 +12,25 @@
         android:text="메      뉴"
         android:textSize="50dp" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/edge"
-        android:paddingBottom="40dp"
-        android:text="주문내역"
-        android:textSize="20dp" />
+        android:orientation="vertical"
+        android:background="@drawable/edge">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주문내역"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/cashInsertOrderList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="20dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -31,7 +42,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edge"
             android:gravity="center"
-            android:text="현금를 넣어주세요"
+            android:text="현금을 넣어주세요"
             android:textSize="30dp" />
 
         <CheckBox

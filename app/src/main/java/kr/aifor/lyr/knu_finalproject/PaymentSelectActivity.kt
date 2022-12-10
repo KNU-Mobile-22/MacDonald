@@ -30,5 +30,17 @@ class PaymentSelectActivity : AppCompatActivity() {
             finish()
         }
 
+        var cashButton = findViewById<Button>(R.id.pay_btn_cash)
+        cashButton.setOnClickListener {
+            val intent2 = Intent(this, CashInsertActivity::class.java)
+            // CashInsertActivity로 데이터 전달
+            intent2.putExtra("data1", data1)
+            intent2.putExtra("data2", data2)
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("orderMap", orderMap)
+            startActivity(intent2)
+            finish()
+        }
+
     }
 }

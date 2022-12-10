@@ -39,7 +39,7 @@ class SideMenuActivity : AppCompatActivity() {
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
 
         MenuManager = GridLayoutManager(this, 3)
-        menuAdapter = MenuAdapter(menuList.sideList)
+        menuAdapter = MenuAdapter(menuList.sideList, fireBaseData)
         var Menu_List = rec_side.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
