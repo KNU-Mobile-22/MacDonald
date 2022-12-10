@@ -34,6 +34,8 @@ class HomeActivity : AppCompatActivity() {
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var database: DatabaseReference
 
+    var isNetworkDone = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,16 +46,46 @@ class HomeActivity : AppCompatActivity() {
         btn_main = findViewById(R.id.main)
         btn_option = findViewById(R.id.option)
         database = Firebase.database.reference
+        database = Firebase.database.reference
+        Log.d("Gen", "loading")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                /**
+                data라는 해시맵에 메뉴 코드를 key, Menu 클래스를 value로 하여
+                데이터를 삽입
+                 */
+                isNetworkDone = false
+                Log.d("Gen", "startNetworking")
+                for (item in snapshot.children) {
+                    when (item.key) {
+                        "totalOrderNum" -> orderCount = item.getValue(Int::class.java)!!
+                        "totalSellPrice" -> orderPrice = item.getValue(Int::class.java)!!
+                        else -> {
+                            val key = item.key
+                            val menuVal = item.getValue(Menu::class.java)
+                            fireBaseData.put(key!!, menuVal!!)
+                        }
+                    }
+                }
+                isNetworkDone = true
+                Log.d("myLog", "firebase init complete!")
+                Toast.makeText(applicationContext, "firebase 갱신 성공", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         // initDatabase()
 
         var Str = (menuList.burgerList[0].javaClass.name)
-        fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
-        orderCount = intent.getIntExtra("totalOrderNum", 0)
-        orderPrice = intent.getIntExtra("totalSellPrice", 0)
+        // fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+        // orderCount = intent.getIntExtra("totalOrderNum", 0)
+        // orderPrice = intent.getIntExtra("totalSellPrice", 0)
 
-        Log.d("Gen", "Home = ${fireBaseData}")
-        Log.d("Gen", "Home = ${fireBaseData.get("101")!!.name}")
+        // Log.d("Gen", "Home = ${fireBaseData}")
+        // Log.d("Gen", "Home = ${fireBaseData.get("101")!!.name}")
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -66,14 +98,16 @@ class HomeActivity : AppCompatActivity() {
         btn_take_in.setOnClickListener {
             Toast.makeText(applicationContext, "매장 버튼 Clicked", Toast.LENGTH_SHORT).show()
             loc = "takeIn"
-            if (currentMode.equals("general")) {
+            if (currentMode.equals("general") && isNetworkDone) {
                 var intent = Intent(this, GeneralMenuActivity::class.java)
                 intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
-            } else if (currentMode.equals("easy")) {
+
+            } else if (currentMode.equals("easy") && isNetworkDone) {
                 var intent = Intent(this, EasyMenuActivity::class.java)
                 intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
+
             }
         }
 
@@ -81,14 +115,16 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "포장 버튼 Clicked", Toast.LENGTH_SHORT).show()
 
             loc = "takeOut"
-            if (currentMode.equals("general")) {
+            if (currentMode.equals("general") && isNetworkDone) {
                 var intent = Intent(this, GeneralMenuActivity::class.java)
                 intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
-            } else if (currentMode.equals("easy")) {
+
+            } else if (currentMode.equals("easy") && isNetworkDone) {
                 var intent = Intent(this, EasyMenuActivity::class.java)
                 intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
+
             }
         }
 
@@ -135,6 +171,7 @@ class HomeActivity : AppCompatActivity() {
 
     fun initDatabase() {
         Log.d("myLog", "${menuList.burgerList.size}")
+
         for (i in 0 until menuList.burgerList.size) {
             database.child("${menuList.burgerList[i].code}")
                 .setValue(menuList.burgerList[i])

@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import org.w3c.dom.Text
 
 class CardInsertActivity : AppCompatActivity() {
 
@@ -21,16 +22,19 @@ class CardInsertActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_insert)
 
-        val data1 = intent.getStringExtra("data1")
-        val data2 = intent.getStringExtra("data2")
+        val payment = intent.getStringExtra("payment")
         val fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         val orderMap = intent.getSerializableExtra("orderMap") as HashMap<Int, Int>
-        val orderText: TextView = findViewById(R.id.cardInsertOrderList)
+        val orderName: TextView = findViewById(R.id.cardInsertOLName)
+        val orderNum: TextView = findViewById(R.id.cardInsertOLNum)
+        val orderPrice : TextView = findViewById(R.id.cardInsertOLPrice)
+        val insertPayment : TextView = findViewById(R.id.InsertPayment)
 
-        Log.d("intent", "PaymentSelect -> CardInsert: ${data1}, ${data2}")
 
         //주문내역 출력
-        var orderList: String = ""
+        var orderPrintName: String = ""
+        var orderPrintNum = ""
+        var orderPrintPrice = ""
         val keys = orderMap.keys
         var priceSum = 0
         var num = 0
@@ -71,11 +75,24 @@ class CardInsertActivity : AppCompatActivity() {
 
             }
             priceSum += price
-            orderList += "${name} : ${num}개 : ${price}원\n"
+            if(name.length > 18){
+                name = name.substring(0 until 18) + "\n" + name.subSequence(18 until name.length)
+                orderPrintNum += "\n"
+                orderPrintPrice += "\n"
+            }
+            orderPrintName += "${name}\n"
+            orderPrintNum += "${num}개\n"
+            orderPrintPrice += "${price}원\n"
         }
-        orderList += "                  총액 : ${priceSum}"
-        orderText.setText(orderList)
-        Log.d("intent", "PaymentSelect -> CardInsert: ${data1}, ${data2}")
+        orderPrintName+="총액"
+        orderPrintPrice+="${priceSum}원"
+        orderName.setText(orderPrintName)
+        orderNum.setText(orderPrintNum)
+        orderPrice.setText(orderPrintPrice)
+        if(payment == "Card")
+            insertPayment.setText("카드를 넣어주세요.")
+        else
+            insertPayment.setText("현금을 넣어주세요.")
 
         val cardCheckBox = findViewById<CheckBox>(R.id.card_check_test)
 
@@ -97,8 +114,6 @@ class CardInsertActivity : AppCompatActivity() {
 
         cardCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-
-
                 for (key in keys) {
                     num = orderMap.get(key)!!
 
@@ -123,8 +138,6 @@ class CardInsertActivity : AppCompatActivity() {
 
                 val intent2 = Intent(this, CompletePaymentActivity::class.java)
                 // CompletePaymentActivity로 데이터 전달
-                intent2.putExtra("data1", data1)
-                intent2.putExtra("data2", data2)
                 startActivity(intent2)
                 finish()
             }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,6 +20,7 @@ class FishMenuActivity : AppCompatActivity() {
     lateinit var orderAdapter: orderAdapter
     lateinit var completeButton: Button
     lateinit var cancleButton: Button
+    lateinit var burgerImageView: ImageView
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
 
@@ -68,26 +70,45 @@ class FishMenuActivity : AppCompatActivity() {
             }
         }
 
+        if(fireBaseData.get("106")!!.left==0){
+            burgerImageView=findViewById(R.id.burger_106_img)
+            burgerImageView.setImageResource(R.drawable.soldout_img)
+        }
+        if(fireBaseData.get("107")!!.left==0){
+            burgerImageView=findViewById(R.id.burger_107_img)
+            burgerImageView.setImageResource(R.drawable.soldout_img)
+        }
+
         var burger_106_grid = findViewById<GridLayout>(R.id.fish_106_grid)
         burger_106_grid.setOnClickListener {
-            val intent2 = Intent(this, SelectSetActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 106)
+            if(fireBaseData.get("106")!!.left==0){
+                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent2 = Intent(this, SelectSetActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("burgerCode", 106)
 
-            requestLaunch.launch(intent2)
+                requestLaunch.launch(intent2)
+            }
         }
 
         var burger_107_grid = findViewById<GridLayout>(R.id.fish_107_grid)
         burger_107_grid.setOnClickListener {
-            val intent2 = Intent(this, SelectSetActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 107)
+            if(fireBaseData.get("107")!!.left==0){
+                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent2 = Intent(this, SelectSetActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("burgerCode", 107)
 
-            requestLaunch.launch(intent2)
+                requestLaunch.launch(intent2)
+            }
         }
 
 

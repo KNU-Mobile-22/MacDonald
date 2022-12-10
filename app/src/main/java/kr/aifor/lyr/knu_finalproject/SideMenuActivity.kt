@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -74,7 +75,9 @@ class SideMenuActivity : AppCompatActivity() {
     }
 
     fun ItemClickLister(v: View, data: Menu, position: Int) {
-        if (data.code / 100 == 1) {
+        if (fireBaseData.get((data.code).toString())!!.left == 0) {
+            Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+        } else if (data.code / 100 == 1) {
             /**
              * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
              */

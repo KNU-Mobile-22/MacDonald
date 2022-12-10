@@ -23,11 +23,29 @@
             android:text="주문내역"
             android:textSize="20dp"
             android:gravity="center"/>
-        <TextView
-            android:id="@+id/cardInsertOrderList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="20dp"/>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/cardInsertOLName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text = "이름"
+                android:layout_weight="3"/>
+            <TextView
+                android:id="@+id/cardInsertOLNum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="수량"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/cardInsertOLPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="가격"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 
@@ -37,6 +55,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/InsertPayment"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="@drawable/edge"

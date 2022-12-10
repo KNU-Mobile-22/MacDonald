@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
@@ -15,6 +17,7 @@ class SelectSetActivity : AppCompatActivity() {
     var isSet: Boolean = false
     var currentSideCode: Int = 0
     var currentDrinkCode: Int = 0
+    lateinit var setImg: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,62 @@ class SelectSetActivity : AppCompatActivity() {
         var imageID = resources.getIdentifier("c${burgerCode}", "drawable", packageName)
         Log.d("imageID", "${imageID}")
         binding.selectImg.setImageResource(imageID)
+
+        if(fireBaseData.get("202")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.french_fries_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("205")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.coleslaw_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("206")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.cheese_stick_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("208")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.macnugget_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("303")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.coke_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("306")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.sprite_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("304")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.cokezero_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("307")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.spritezero_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("405")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.americano_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("403")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.latte_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
+        if(fireBaseData.get("404")!!.left == 0) {
+            setImg = findViewById<ImageButton>(R.id.cappuccino_btn)
+            setImg.setImageResource(R.drawable.soldout_img)
+        }
+
 
         //단품, 세트 선택
         binding.singlebtn.setOnClickListener {
@@ -95,78 +154,128 @@ class SelectSetActivity : AppCompatActivity() {
 
         //사이드 선택
         binding.frenchFriesBtn.setOnClickListener {
-            binding.sidetxt.setText("후렌치 후라이")
-            binding.sideimg.setImageResource(R.drawable.right)
-            binding.sidelay.visibility = View.GONE
-            currentSideCode = 202
+            if (fireBaseData.get("202")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                binding.sidetxt.setText("후렌치 후라이")
+                binding.sideimg.setImageResource(R.drawable.right)
+                binding.sidelay.visibility = View.GONE
+                currentSideCode = 202
+            }
         }
         binding.coleslawBtn.setOnClickListener {
-            binding.sidetxt.setText("코우슬로")
-            binding.sideimg.setImageResource(R.drawable.right)
-            binding.sidelay.visibility = View.GONE
-            currentSideCode = 205
+            if (fireBaseData.get("205")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                binding.sidetxt.setText("코우슬로")
+                binding.sideimg.setImageResource(R.drawable.right)
+                binding.sidelay.visibility = View.GONE
+                currentSideCode = 205
+            }
         }
         binding.cheeseStickBtn.setOnClickListener {
-            binding.sidetxt.setText("치즈스틱 2조각")
-            binding.sideimg.setImageResource(R.drawable.right)
-            binding.sidelay.visibility = View.GONE
-            currentSideCode = 206
+            if (fireBaseData.get("206")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.sidetxt.setText("치즈스틱 2조각")
+                binding.sideimg.setImageResource(R.drawable.right)
+                binding.sidelay.visibility = View.GONE
+                currentSideCode = 206
+            }
         }
         binding.macnuggetBtn.setOnClickListener {
-            binding.sidetxt.setText("맥너겟 4조각")
-            binding.sideimg.setImageResource(R.drawable.right)
-            binding.sidelay.visibility = View.GONE
-            currentSideCode = 208
+            if (fireBaseData.get("208")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.sidetxt.setText("맥너겟 4조각")
+                binding.sideimg.setImageResource(R.drawable.right)
+                binding.sidelay.visibility = View.GONE
+                currentSideCode = 208
+            }
         }
 
         //음료 선택
         binding.cokeBtn.setOnClickListener {
-            binding.drinktxt.setText("코카 콜라")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 303
+            if (fireBaseData.get("303")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("코카 콜라")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 303
+            }
         }
         binding.spriteBtn.setOnClickListener {
-            binding.drinktxt.setText("스프라이트")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 306
+            if (fireBaseData.get("306")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("스프라이트")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 306
+            }
         }
         binding.cokezeroBtn.setOnClickListener {
-            binding.drinktxt.setText("코카 콜라 제로")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 304
+            if (fireBaseData.get("304")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("코카 콜라 제로")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 304
+            }
         }
         binding.spritezeroBtn.setOnClickListener {
-            binding.drinktxt.setText("스프라이트 제로")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 307
+            if (fireBaseData.get("307")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("스프라이트 제로")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 307
+            }
         }
         binding.americanoBtn.setOnClickListener {
-            binding.drinktxt.setText("아메리카노")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 405
+            if (fireBaseData.get("405")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("아메리카노")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 405
+            }
         }
         binding.latteBtn.setOnClickListener {
-            binding.drinktxt.setText("카페라떼")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 403
+            if (fireBaseData.get("403")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("카페라떼")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 403
+            }
         }
         binding.vanilaLatteBtn.setOnClickListener {
-            binding.drinktxt.setText("바닐라 라떼")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 401
+            if (fireBaseData.get("401")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("바닐라 라떼")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 401
+            }
         }
         binding.cappuccinoBtn.setOnClickListener {
-            binding.drinktxt.setText("카푸치노")
-            binding.drinkimg.setImageResource(R.drawable.right)
-            binding.drinklay.visibility = View.GONE
-            currentDrinkCode = 404
+            if (fireBaseData.get("404")!!.left == 0) {
+                Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.drinktxt.setText("카푸치노")
+                binding.drinkimg.setImageResource(R.drawable.right)
+                binding.drinklay.visibility = View.GONE
+                currentDrinkCode = 404
+            }
         }
 
         //장바구니 담기 버튼

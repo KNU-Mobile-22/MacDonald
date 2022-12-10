@@ -34,7 +34,7 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var keys = orderList.keys.toList()
         val code = keys[position]
-        val num = orderList.get(code)
+        var num: Int = orderList.get(code)!!
         val order = holder as orderHolder
 
         val textListener = object : View.OnClickListener {
@@ -44,11 +44,45 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
                 when (v!!.id) {
                     //+버튼
                     order.plusButton.id -> {
-                        var num: Int = curNum + 1
-                        if(num > data.get(code.toString())!!.left){
-                            num--
-                            Toast.makeText(v.context, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
+                        num = curNum + 1
+                        if (code < 1000) {
+                            if (num > data.get(code.toString())!!.left) {
+                                num--
+                                Toast.makeText(v.context, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        } else {
+                            var burgerCode = code / 1000000
+                            var sideCode = (code % 1000000) / 1000
+                            var drinkCode = code % 1000
+
+                            val burger = data.get(burgerCode.toString())!!
+                            val side = data.get(sideCode.toString())!!
+                            val drink = data.get(drinkCode.toString())!!
+                            if (num > burger.left) {
+                                num--
+                                Toast.makeText(
+                                    v.context,
+                                    "${burger.name}의 수량이 최대 주문 가능 수량입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else if (num > side.left) {
+                                num--
+                                Toast.makeText(
+                                    v.context,
+                                    "${side.name}의 수량이 최대 주문 가능 수량입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else if (num > drink.left) {
+                                num--
+                                Toast.makeText(
+                                    v.context,
+                                    "${drink.name}의 수량이 최대 주문 가능 수량입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
+
                         orderList.put(code, num)
                         order.orderNum.setText(num.toString())
                     }
@@ -83,7 +117,7 @@ class orderAdapter(var orderList: HashMap<Int, Int>, var firebaseData: HashMap<S
 
             name = burger.name + " 세트(" + side.name + ", " + drink.name + ")"
             var dbPrice = (burger.price + side.price + drink.price) * 0.8
-            price = floor(dbPrice/100).toInt()*100
+            price = floor(dbPrice / 100).toInt() * 100
         } else {
             val curMenu = data.get(code.toString())!!
             name = curMenu.name

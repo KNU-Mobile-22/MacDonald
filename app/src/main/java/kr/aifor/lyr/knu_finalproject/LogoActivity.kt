@@ -16,8 +16,8 @@ class LogoActivity : AppCompatActivity() {
 
     lateinit var database: DatabaseReference
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
-    var orderCount : Int = -1
-    var orderPrice : Int = -1
+    var orderCount: Int = -1
+    var orderPrice: Int = -1
     var isNetworkDone = false
     var coroutineScope = CoroutineScope(Dispatchers.Main)
 
@@ -25,7 +25,8 @@ class LogoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logo)
         database = Firebase.database.reference
-        Log.d("Gen","loading")
+        Log.d("Gen", "loading")
+        /*
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 /**
@@ -52,22 +53,25 @@ class LogoActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+         */
 
         coroutineScope.launch {
             delay(3000)
             var intent = Intent(this@LogoActivity, HomeActivity::class.java)
-            while(isNetworkDone == false) {
+            /*
+            while (isNetworkDone == false) {
                 delay(1000)
                 Log.d("Gen", "waiting network")
             }
+             */
 
-            Log.d("Gen", "intent ${isNetworkDone}")
-            Log.d("Gen", "logo = ${fireBaseData.get("101")!!.name}")
-            intent.putExtra("fireBaseData", fireBaseData)
-            intent.putExtra("totalOrderNum", orderCount)
-            intent.putExtra("totalSellPrice", orderPrice)
-            if(isNetworkDone == true)
-                startActivity(intent)
+            // Log.d("Gen", "intent ${isNetworkDone}")
+            // Log.d("Gen", "logo = ${fireBaseData.get("101")!!.name}")
+            // intent.putExtra("fireBaseData", fireBaseData)
+            // intent.putExtra("totalOrderNum", orderCount)
+            // intent.putExtra("totalSellPrice", orderPrice)
+            // if (isNetworkDone == true)
+            startActivity(intent)
             finish()
         }
     }

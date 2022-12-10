@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,6 +20,7 @@ class BulgogiMenuActivity : AppCompatActivity() {
     lateinit var orderAdapter: orderAdapter
     lateinit var completeButton: Button
     lateinit var cancleButton: Button
+    lateinit var burgerImageView: ImageView
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
 
@@ -66,38 +68,65 @@ class BulgogiMenuActivity : AppCompatActivity() {
                 orderAdapter.notifyDataSetChanged()
             }
         }
+        if(fireBaseData.get("115")!!.left==0){
+            burgerImageView=findViewById(R.id.burger_115_img)
+            burgerImageView.setImageResource(R.drawable.soldout_img)
+        }
+        if(fireBaseData.get("116")!!.left==0){
+            burgerImageView=findViewById(R.id.burger_116_img)
+            burgerImageView.setImageResource(R.drawable.soldout_img)
+        }
+        if(fireBaseData.get("117")!!.left==0){
+            burgerImageView=findViewById(R.id.burger_117_img)
+            burgerImageView.setImageResource(R.drawable.soldout_img)
+        }
 
         var burger_115_grid = findViewById<GridLayout>(R.id.bulgogi_115_grid)
         burger_115_grid.setOnClickListener {
-            val intent2 = Intent(this, SelectSetActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 115)
+            if(fireBaseData.get("115")!!.left==0){
+                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent2 = Intent(this, SelectSetActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("burgerCode", 115)
 
-            requestLaunch.launch(intent2)
+                requestLaunch.launch(intent2)
+            }
         }
 
         var burger_116_grid = findViewById<GridLayout>(R.id.bulgogi_116_grid)
         burger_116_grid.setOnClickListener {
-            val intent2 = Intent(this, SelectSetActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 116)
+            if(fireBaseData.get("116")!!.left==0){
+                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent2 = Intent(this, SelectSetActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("burgerCode", 116)
 
-            requestLaunch.launch(intent2)
+                requestLaunch.launch(intent2)
+            }
         }
 
         var burger_117_grid = findViewById<GridLayout>(R.id.bulgogi_117_grid)
         burger_117_grid.setOnClickListener {
-            val intent2 = Intent(this, SelectSetActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("burgerCode", 117)
+            if(fireBaseData.get("117")!!.left==0){
+                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent2 = Intent(this, SelectSetActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("burgerCode", 117)
 
-            requestLaunch.launch(intent2)
+                requestLaunch.launch(intent2)
+            }
         }
 
     }

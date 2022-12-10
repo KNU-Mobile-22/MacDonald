@@ -37,6 +37,7 @@
                 android:rowCount="3">
 
                 <ImageView
+                    android:id="@+id/burger_103_img"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -66,6 +67,7 @@
                 android:rowCount="3">
 
                 <ImageView
+                    android:id="@+id/burger_104_img"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -95,6 +97,7 @@
                 android:rowCount="3">
 
                 <ImageView
+                    android:id="@+id/burger_114_img"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -134,6 +137,7 @@
                 android:rowCount="3">
 
                 <ImageView
+                    android:id="@+id/burger_112_img"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
@@ -163,6 +167,7 @@
                 android:rowCount="3">
 
                 <ImageView
+                    android:id="@+id/burger_111_img"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:padding="0dp"
