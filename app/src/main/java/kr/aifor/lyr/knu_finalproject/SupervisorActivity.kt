@@ -19,6 +19,7 @@ class SupervisorActivity : AppCompatActivity() {
     lateinit var allSumView: TextView
     lateinit var leftText: TextView
     lateinit var backButton: Button
+    lateinit var initButton: Button
     var menuList = MenuList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +38,6 @@ class SupervisorActivity : AppCompatActivity() {
                 Log.d("myLog", "totalSellMoney: ${totalSellMoney}")
                 allSumView = findViewById<TextView>(R.id.all_sum)
                 allSumView.setText("${totalSellMoney}")
-
-                backButton = findViewById(R.id.supervisor_back_btn)
-                backButton.setOnClickListener {
-                    intent.putExtra("result", "result_by_SupervisorActivity")
-                    setResult(RESULT_OK, intent)
-                    finish()
-                }
 
                 for (i in 0 until menuList.burgerList.size) {
                     var resID = resources.getIdentifier("left_" + (i + 101), "id", packageName)
@@ -93,5 +87,53 @@ class SupervisorActivity : AppCompatActivity() {
 
         })
 
+        backButton = findViewById(R.id.supervisor_back_btn)
+        backButton.setOnClickListener {
+            intent.putExtra("result", "result_by_SupervisorActivity")
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+
+        initButton = findViewById(R.id.supervisor_init_btn)
+        initButton.setOnClickListener {
+            initDatabase()
+        }
+
+    }
+
+    fun initDatabase() {
+        Log.d("myLog", "${menuList.burgerList.size}")
+
+        for (i in 0 until menuList.burgerList.size) {
+            database.child("${menuList.burgerList[i].code}")
+                .setValue(menuList.burgerList[i])
+        }
+
+        Log.d("myLog", "${menuList.sideList.size}")
+        for (i in 0 until menuList.sideList.size) {
+            database.child("${menuList.sideList[i].code}")
+                .setValue(menuList.sideList[i])
+        }
+
+        Log.d("myLog", "${menuList.drinkList.size}")
+        for (i in 0 until menuList.drinkList.size) {
+            database.child("${menuList.drinkList[i].code}")
+                .setValue(menuList.drinkList[i])
+        }
+
+        Log.d("myLog", "${menuList.coffeeList.size}")
+        for (i in 0 until menuList.coffeeList.size) {
+            database.child("${menuList.coffeeList[i].code}")
+                .setValue(menuList.coffeeList[i])
+        }
+
+        Log.d("myLog", "${menuList.desertList.size}")
+        for (i in 0 until menuList.desertList.size) {
+            database.child("${menuList.desertList[i].code}")
+                .setValue(menuList.desertList[i])
+        }
+
+        database.child("totalOrderNum").setValue(0)
+        database.child("totalSellPrice").setValue(0)
     }
 }

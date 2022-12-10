@@ -5,7 +5,7 @@ public class Menu(
     var price: Int = 0,
     var code: Int = 0,
     var image_uri: Int = 0,
-    var left: Int = 50
+    var left: Int = 20
 ):java.io.Serializable
 
 /**

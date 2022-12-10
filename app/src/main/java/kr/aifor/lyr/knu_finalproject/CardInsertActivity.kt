@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.w3c.dom.Text
+import kotlin.math.floor
 
 class CardInsertActivity : AppCompatActivity() {
 
@@ -27,8 +28,8 @@ class CardInsertActivity : AppCompatActivity() {
         val orderMap = intent.getSerializableExtra("orderMap") as HashMap<Int, Int>
         val orderName: TextView = findViewById(R.id.cardInsertOLName)
         val orderNum: TextView = findViewById(R.id.cardInsertOLNum)
-        val orderPrice : TextView = findViewById(R.id.cardInsertOLPrice)
-        val insertPayment : TextView = findViewById(R.id.InsertPayment)
+        val orderPrice: TextView = findViewById(R.id.cardInsertOLPrice)
+        val insertPayment: TextView = findViewById(R.id.InsertPayment)
 
 
         //주문내역 출력
@@ -70,12 +71,15 @@ class CardInsertActivity : AppCompatActivity() {
                 drinkMenu = fireBaseData.get(drinkCode.toString())!!
 
                 name = burgerMenu.name + " 세트(" + sideMenu.name + ", " + drinkMenu.name
+                /*
                 price =
                     (((burgerMenu.price + sideMenu.price + drinkMenu.price) * 0.8).toInt()) * num
-
+                    */
+                var dbPrice = (burgerMenu.price + sideMenu.price + drinkMenu.price) * 0.8 * num
+                price = floor(dbPrice / 100).toInt() * 100
             }
             priceSum += price
-            if(name.length > 18){
+            if (name.length > 18) {
                 name = name.substring(0 until 18) + "\n" + name.subSequence(18 until name.length)
                 orderPrintNum += "\n"
                 orderPrintPrice += "\n"
@@ -84,12 +88,12 @@ class CardInsertActivity : AppCompatActivity() {
             orderPrintNum += "${num}개\n"
             orderPrintPrice += "${price}원\n"
         }
-        orderPrintName+="총액"
-        orderPrintPrice+="${priceSum}원"
+        orderPrintName += "총액"
+        orderPrintPrice += "${priceSum}원"
         orderName.setText(orderPrintName)
         orderNum.setText(orderPrintNum)
         orderPrice.setText(orderPrintPrice)
-        if(payment == "Card")
+        if (payment == "Card")
             insertPayment.setText("카드를 넣어주세요.")
         else
             insertPayment.setText("현금을 넣어주세요.")
@@ -119,12 +123,38 @@ class CardInsertActivity : AppCompatActivity() {
 
                     if (key < 1000) {
                         var left = fireBaseData.get(key.toString())!!.left - num
+
+                        // fireBaseData에 재고량 갱신
+                        var curMenu = fireBaseData.get("${key}")
+                        curMenu!!.left = left
+                        fireBaseData.put("${key}", curMenu)
+                        //
+
                         database.child("${key}").child("left").setValue(left)
                         db_totalOrderNum += num
                     } else {
                         var burgerLeft = fireBaseData.get(burgerCode.toString())!!.left - num
                         var sideLeft = fireBaseData.get(sideCode.toString())!!.left - num
                         var drinkLeft = fireBaseData.get(drinkCode.toString())!!.left - num
+
+                        // fireBaseData에 재고량 갱신
+                        var curMenu = fireBaseData.get("${burgerCode}")
+                        curMenu!!.left = burgerLeft
+                        fireBaseData.put("${burgerCode}", curMenu)
+
+                        curMenu = fireBaseData.get("${sideCode}")
+                        curMenu!!.left = sideLeft
+                        fireBaseData.put("${sideCode}", curMenu)
+
+                        curMenu = fireBaseData.get("${drinkCode}")
+                        curMenu!!.left = drinkLeft
+                        fireBaseData.put("${drinkCode}", curMenu)
+                        //
+
+                        fireBaseData.get(burgerCode.toString())!!.left = burgerLeft
+                        fireBaseData.get(burgerCode.toString())!!.left = sideLeft
+                        fireBaseData.get(burgerCode.toString())!!.left = drinkLeft
+
                         database.child("${burgerCode}").child("left").setValue(burgerLeft)
                         database.child("${sideCode}").child("left").setValue(sideLeft)
                         database.child("${drinkCode}").child("left").setValue(drinkLeft)

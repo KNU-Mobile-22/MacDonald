@@ -125,15 +125,19 @@ class EasyMenuActivity : AppCompatActivity() {
 
         var paymentButton = findViewById<Button>(R.id.easy_payment_btn)
         paymentButton.setOnClickListener {
-            val intent2 = Intent(this, PaymentSelectActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("orderMap", orderMap)
-            intent2.putExtra("data2", "test2")
+            if (orderMap.isEmpty()) {
+                Toast.makeText(applicationContext,"주문할 메뉴를 선택해주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent2 = Intent(this, PaymentSelectActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("orderMap", orderMap)
+                intent2.putExtra("data2", "test2")
 
-            startActivity(intent2)
-            finish()
+                startActivity(intent2)
+                finish()
+            }
         }
 
         val cancelButton = findViewById<Button>(R.id.easy_cancle_btn)

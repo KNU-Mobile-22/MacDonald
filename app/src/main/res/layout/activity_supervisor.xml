@@ -1431,13 +1431,30 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/supervisor_back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:text="돌아가기"
-        android:textSize="30dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/supervisor_init_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="초기화"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/supervisor_back_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="돌아가기"
+            android:textSize="30dp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

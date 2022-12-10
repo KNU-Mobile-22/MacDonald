@@ -93,15 +93,19 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         //결제하기
         val paymentButton = findViewById<Button>(R.id.gen_btn_payment)
         paymentButton.setOnClickListener {
-            val intent2 = Intent(this, PaymentSelectActivity::class.java)
-            if (orderMap == null)
-                Log.d("Gen", "OrderMap is Null")
-            intent2.putExtra("fireBaseData", fireBaseData)
-            intent2.putExtra("orderMap", orderMap)
-            intent2.putExtra("data2", "test2")
+            if (orderMap.isEmpty()) {
+                Toast.makeText(applicationContext, "주문할 메뉴를 선택해주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent2 = Intent(this, PaymentSelectActivity::class.java)
+                if (orderMap == null)
+                    Log.d("Gen", "OrderMap is Null")
+                intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("orderMap", orderMap)
+                intent2.putExtra("data2", "test2")
 
-            startActivity(intent2)
-            finish()
+                startActivity(intent2)
+                finish()
+            }
         }
 
         //취소하기 - 주문내역 사라짐
@@ -185,10 +189,9 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     // 각 메뉴 아이템 클릭리스너
     fun ItemClickLister(v: View, data: Menu, position: Int) {
-        if(fireBaseData.get((data.code).toString())!!.left==0){
-            Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-        }
-        else {
+        if (fireBaseData.get((data.code).toString())!!.left == 0) {
+            Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+        } else {
             if (data.code / 100 == 1) {
                 /**
                  * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
@@ -204,8 +207,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
                 // startActivity(intent2)
                 requestLaunch.launch(intent2)
-            }
-            else {
+            } else {
                 if (orderMap.containsKey(data.code))
                     orderMap.put(data.code, orderMap.get(data.code)!! + 1)
                 else
