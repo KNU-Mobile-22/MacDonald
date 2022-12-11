@@ -32,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
     var menuList = MenuList()
 
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
+    var tempData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var database: DatabaseReference
 
     var isNetworkDone = false
@@ -46,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
         btn_main = findViewById(R.id.main)
         btn_option = findViewById(R.id.option)
         database = Firebase.database.reference
-        database = Firebase.database.reference
+        // initDatabase()
         Log.d("Gen", "loading")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -64,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
                             val key = item.key
                             val menuVal = item.getValue(Menu::class.java)
                             fireBaseData.put(key!!, menuVal!!)
+                            tempData.put(key!!, menuVal!!)
                         }
                     }
                 }
@@ -163,6 +165,7 @@ class HomeActivity : AppCompatActivity() {
     fun makeIntent(intent: Intent, loc: String): Intent {
         intent.putExtra("loc", loc)
         intent.putExtra("fireBaseData", fireBaseData)
+        intent.putExtra("tempData", tempData)
         intent.putExtra("totalOrderNum", orderCount)
         intent.putExtra("totalSellPrice", orderPrice)
 

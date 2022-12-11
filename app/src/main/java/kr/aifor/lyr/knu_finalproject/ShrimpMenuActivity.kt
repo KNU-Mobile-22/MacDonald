@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
@@ -13,12 +14,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ShrimpMenuActivity : AppCompatActivity() {
+class ShrimpMenuActivity : AppCompatActivity() , View.OnClickListener{
 
     var orderMap = HashMap<Int, Int>()
     lateinit var rec_orderList: RecyclerView
     lateinit var orderAdapter: orderAdapter
     lateinit var completeButton: Button
+    var tempData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var cancleButton: Button
     lateinit var burgerImageView: ImageView
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
@@ -69,47 +71,43 @@ class ShrimpMenuActivity : AppCompatActivity() {
             }
         }
 
-        if(fireBaseData.get("108")!!.left==0){
-            burgerImageView=findViewById(R.id.burger_108_img)
-            burgerImageView.setImageResource(R.drawable.soldout_img)
+        fun checkSoldout(code: String, imgId: Int) {
+            if (fireBaseData.get(code)!!.left == 0) {
+                burgerImageView = findViewById(imgId)
+                burgerImageView.setImageResource(R.drawable.soldout_img)
+            }
         }
-        if(fireBaseData.get("109")!!.left==0){
-            burgerImageView=findViewById(R.id.burger_109_img)
-            burgerImageView.setImageResource(R.drawable.soldout_img)
-        }
+
+        checkSoldout("108", R.id.burger_108_img)
+        checkSoldout("109", R.id.burger_109_img)
 
         var burger_108_grid = findViewById<GridLayout>(R.id.shrimp_108_grid)
-        burger_108_grid.setOnClickListener {
-            if(fireBaseData.get("108")!!.left==0){
-                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                val intent2 = Intent(this, SelectSetActivity::class.java)
-                if (orderMap == null)
-                    Log.d("Gen", "OrderMap is Null")
-                intent2.putExtra("fireBaseData", fireBaseData)
-                intent2.putExtra("burgerCode", 108)
-
-                requestLaunch.launch(intent2)
-            }
-        }
-
+        burger_108_grid.setOnClickListener(this)
         var burger_109_grid = findViewById<GridLayout>(R.id.shrimp_109_grid)
-        burger_109_grid.setOnClickListener {
-            if(fireBaseData.get("109")!!.left==0){
-                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                val intent2 = Intent(this, SelectSetActivity::class.java)
-                if (orderMap == null)
-                    Log.d("Gen", "OrderMap is Null")
-                intent2.putExtra("fireBaseData", fireBaseData)
-                intent2.putExtra("burgerCode", 109)
+        burger_109_grid.setOnClickListener(this)
 
-                requestLaunch.launch(intent2)
-            }
+
+    }
+
+    override fun onClick(p0: View) {
+        var code = 0
+        when (p0.id) {
+            R.id.shrimp_108_grid -> code = 108
+            R.id.shrimp_109_grid -> code = 109
         }
+        if (fireBaseData.get(code.toString())!!.left == 0) {
+            Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+        } else if (tempData.get(code.toString())!!.left == 0) {
+            Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("tempData", tempData)
+            intent2.putExtra("burgerCode", code)
 
-
+            requestLaunch.launch(intent2)
+        }
     }
 }

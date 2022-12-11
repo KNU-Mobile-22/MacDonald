@@ -39,6 +39,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var menuAdapter: MenuAdapter
     lateinit var orderAdapter: orderAdapter
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
+    var tempData: HashMap<String, Menu> = java.util.HashMap()
 
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
 
@@ -64,6 +65,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         btn_desert.setOnClickListener(this)
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+        // orderMap에서 사용하기 위한 fireBaseData의 복제본
+        tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
         Log.d("Gen", "Gen = ${fireBaseData}")
         Log.d("Gen", "Gen = ${fireBaseData.get("101")!!.name}")
 
@@ -78,6 +81,28 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                     orderMap.put(resultData, orderMap.get(resultData)!! + 1)
                 else
                     orderMap.put(resultData, 1)
+
+                if (resultData < 1000) {
+                    val orderMenu = tempData.get(resultData.toString())!!
+                    orderMenu.left--
+                    tempData.put(orderMenu.code.toString(), orderMenu)
+                } else {
+                    var burgerCode = resultData / 1000000
+                    var sideCode = (resultData % 1000000) / 1000
+                    var drinkCode = resultData % 1000
+
+                    var burger = tempData.get(burgerCode.toString())!!
+                    var side = tempData.get(sideCode.toString())!!
+                    var drink = tempData.get(drinkCode.toString())!!
+
+                    burger.left--
+                    side.left--
+                    drink.left--
+
+                    tempData.put(burger.code.toString(), burger)
+                    tempData.put(side.code.toString(), side)
+                    tempData.put(drink.code.toString(), drink)
+                }
                 orderAdapter.notifyDataSetChanged()
             }
         }
@@ -99,7 +124,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                 val intent2 = Intent(this, PaymentSelectActivity::class.java)
                 if (orderMap == null)
                     Log.d("Gen", "OrderMap is Null")
-                intent2.putExtra("fireBaseData", fireBaseData)
+                // intent2.putExtra("fireBaseData", fireBaseData)
+                intent2.putExtra("fireBaseData", tempData)
                 intent2.putExtra("orderMap", orderMap)
                 intent2.putExtra("data2", "test2")
 
@@ -108,19 +134,41 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        //취소하기 - 주문내역 사라짐
+//취소하기 - 주문내역 사라짐
         val cancelButton = findViewById<Button>(R.id.gen_btn_cancel)
         cancelButton.setOnClickListener {
             val keys = orderMap.keys.toIntArray()
-            for (k in keys) {
-                Log.d("Gen", "k =${k}")
-                orderMap.remove(k)
+            for (code in keys) {
+                var num = orderMap.get(code)!!
+                if (code < 1000) {
+                    val menu = tempData.get(code.toString())!!
+                    menu.left += num
+                    tempData.put(menu.code.toString(), menu)
+                } else {
+                    var burgerCode = code / 1000000
+                    var sideCode = (code % 1000000) / 1000
+                    var drinkCode = code % 1000
+
+                    var burger = tempData.get(burgerCode.toString())!!
+                    var side = tempData.get(sideCode.toString())!!
+                    var drink = tempData.get(drinkCode.toString())!!
+
+                    burger.left += num
+                    side.left += num
+                    drink.left += num
+
+                    tempData.put(burger.code.toString(), burger)
+                    tempData.put(side.code.toString(), side)
+                    tempData.put(drink.code.toString(), drink)
+                }
+                orderMap.remove(code)
             }
             orderAdapter.notifyDataSetChanged()
         }
 
         //menuAdapter 연결
         MenuManager = GridLayoutManager(this, 3)
+        // menuAdapter = MenuAdapter(menuList.burgerList, fireBaseData)
         menuAdapter = MenuAdapter(menuList.burgerList, fireBaseData)
         var Menu_List = rec_Burger.apply {
             setHasFixedSize(true)
@@ -132,7 +180,8 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                 ItemClickLister(v, data, position)
         })
         //orderAdapter 연결
-        orderAdapter = orderAdapter(orderMap, fireBaseData)
+        // orderAdapter = orderAdapter(orderMap, fireBaseData)
+        orderAdapter = orderAdapter(orderMap, tempData)
         orderList.layoutManager = LinearLayoutManager(this)
         orderList.adapter = orderAdapter
 
@@ -175,6 +224,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                 CurrentMenu = 4
             }
         }
+        // menuAdapter = MenuAdapter(data, fireBaseData)
         menuAdapter = MenuAdapter(data, fireBaseData)
         rec_Burger.apply {
             setHasFixedSize(true)
@@ -189,6 +239,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     // 각 메뉴 아이템 클릭리스너
     fun ItemClickLister(v: View, data: Menu, position: Int) {
+
         if (fireBaseData.get((data.code).toString())!!.left == 0) {
             Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
         } else {
@@ -196,26 +247,48 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                 /**
                  * 버거 선택시 Intent에 선택한 버거 코드를 넣어 사이드 선택 메뉴로 전달.
                  */
-                val intent2 = Intent(this, SelectSetActivity::class.java)
-                if (orderMap == null)
-                    Log.d("Gen", "OrderMap is Null")
-                intent2.putExtra("fireBaseData", fireBaseData)
-                intent2.putExtra("burgerCode", data.code)
-                // intent2.putExtra("orderMap", orderMap)
-                // intent2.putExtra("data2", "test2")
-                Log.d("burgerCode", "${data.code}")
+                if (tempData.get("${data.code}")!!.left <= 0) {
+                    Toast.makeText(v.context, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    val intent2 = Intent(this, SelectSetActivity::class.java)
+                    if (orderMap == null)
+                        Log.d("Gen", "OrderMap is Null")
+                    // intent2.putExtra("fireBaseData", fireBaseData)
+                    intent2.putExtra("fireBaseData", fireBaseData)
+                    intent2.putExtra("tempData", tempData)
+                    intent2.putExtra("burgerCode", data.code)
+                    // intent2.putExtra("orderMap", orderMap)
+                    // intent2.putExtra("data2", "test2")
+                    Log.d("burgerCode", "${data.code}")
 
-                // startActivity(intent2)
-                requestLaunch.launch(intent2)
+                    // startActivity(intent2)
+                    requestLaunch.launch(intent2)
+                }
             } else {
-                if (orderMap.containsKey(data.code))
-                    orderMap.put(data.code, orderMap.get(data.code)!! + 1)
-                else
-                    orderMap.put(data.code, 1)
+                val orderMenu = tempData.get((data.code).toString())!!
+                if (orderMap.containsKey(data.code)) {
+                    if (orderMenu.left <= 0) {
+                        Toast.makeText(v.context, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        orderMenu.left--
+                        tempData.put(orderMenu.code.toString(), orderMenu)
+                        orderMap.put(data.code, orderMap.get(data.code)!! + 1)
+                    }
+                } else {
+                    if (orderMenu.left <= 0) {
+                        Toast.makeText(v.context, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        orderMenu.left--
+                        tempData.put(orderMenu.code.toString(), orderMenu)
+                        orderMap.put(data.code, 1)
+                    }
+                }
                 orderAdapter.notifyDataSetChanged()
             }
         }
-
     }
 }
 

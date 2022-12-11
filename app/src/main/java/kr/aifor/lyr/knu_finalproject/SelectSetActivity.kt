@@ -14,6 +14,7 @@ import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
 
 class SelectSetActivity : AppCompatActivity() {
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
+    var tempData: HashMap<String, Menu> = java.util.HashMap()
     var isSet: Boolean = false
     var currentSideCode: Int = 0
     var currentDrinkCode: Int = 0
@@ -25,6 +26,7 @@ class SelectSetActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+        tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
         var burgerCode = intent.getIntExtra("burgerCode", 0)
         Log.d("Gen", "Select = ${fireBaseData.get("101")!!.name}")
 
@@ -36,57 +38,57 @@ class SelectSetActivity : AppCompatActivity() {
         Log.d("imageID", "${imageID}")
         binding.selectImg.setImageResource(imageID)
 
-        if(fireBaseData.get("202")!!.left == 0) {
+        if (fireBaseData.get("202")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.french_fries_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("205")!!.left == 0) {
+        if (fireBaseData.get("205")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.coleslaw_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("206")!!.left == 0) {
+        if (fireBaseData.get("206")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.cheese_stick_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("208")!!.left == 0) {
+        if (fireBaseData.get("208")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.macnugget_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("303")!!.left == 0) {
+        if (fireBaseData.get("303")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.coke_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("306")!!.left == 0) {
+        if (fireBaseData.get("306")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.sprite_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("304")!!.left == 0) {
+        if (fireBaseData.get("304")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.cokezero_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("307")!!.left == 0) {
+        if (fireBaseData.get("307")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.spritezero_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("405")!!.left == 0) {
+        if (fireBaseData.get("405")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.americano_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("403")!!.left == 0) {
+        if (fireBaseData.get("403")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.latte_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
 
-        if(fireBaseData.get("404")!!.left == 0) {
+        if (fireBaseData.get("404")!!.left == 0) {
             setImg = findViewById<ImageButton>(R.id.cappuccino_btn)
             setImg.setImageResource(R.drawable.soldout_img)
         }
@@ -156,8 +158,9 @@ class SelectSetActivity : AppCompatActivity() {
         binding.frenchFriesBtn.setOnClickListener {
             if (fireBaseData.get("202")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else {
+            } else if (tempData.get("202")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
+            } else {
                 binding.sidetxt.setText("후렌치 후라이")
                 binding.sideimg.setImageResource(R.drawable.right)
                 binding.sidelay.visibility = View.GONE
@@ -167,8 +170,9 @@ class SelectSetActivity : AppCompatActivity() {
         binding.coleslawBtn.setOnClickListener {
             if (fireBaseData.get("205")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else {
+            } else if (tempData.get("205")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
+            } else {
                 binding.sidetxt.setText("코우슬로")
                 binding.sideimg.setImageResource(R.drawable.right)
                 binding.sidelay.visibility = View.GONE
@@ -178,6 +182,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.cheeseStickBtn.setOnClickListener {
             if (fireBaseData.get("206")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("206")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.sidetxt.setText("치즈스틱 2조각")
                 binding.sideimg.setImageResource(R.drawable.right)
@@ -188,6 +194,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.macnuggetBtn.setOnClickListener {
             if (fireBaseData.get("208")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("208")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.sidetxt.setText("맥너겟 4조각")
                 binding.sideimg.setImageResource(R.drawable.right)
@@ -200,6 +208,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.cokeBtn.setOnClickListener {
             if (fireBaseData.get("303")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("303")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("코카 콜라")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -210,6 +220,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.spriteBtn.setOnClickListener {
             if (fireBaseData.get("306")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("306")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("스프라이트")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -220,6 +232,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.cokezeroBtn.setOnClickListener {
             if (fireBaseData.get("304")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("304")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("코카 콜라 제로")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -230,6 +244,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.spritezeroBtn.setOnClickListener {
             if (fireBaseData.get("307")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("307")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("스프라이트 제로")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -240,6 +256,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.americanoBtn.setOnClickListener {
             if (fireBaseData.get("405")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("405")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("아메리카노")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -250,6 +268,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.latteBtn.setOnClickListener {
             if (fireBaseData.get("403")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("403")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("카페라떼")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -260,6 +280,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.vanilaLatteBtn.setOnClickListener {
             if (fireBaseData.get("401")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("401")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("바닐라 라떼")
                 binding.drinkimg.setImageResource(R.drawable.right)
@@ -270,6 +292,8 @@ class SelectSetActivity : AppCompatActivity() {
         binding.cappuccinoBtn.setOnClickListener {
             if (fireBaseData.get("404")!!.left == 0) {
                 Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+            } else if (tempData.get("404")!!.left == 0) {
+                Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
             } else {
                 binding.drinktxt.setText("카푸치노")
                 binding.drinkimg.setImageResource(R.drawable.right)

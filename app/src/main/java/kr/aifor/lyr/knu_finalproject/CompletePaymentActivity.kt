@@ -11,6 +11,10 @@ class CompletePaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_complete_payment)
 
+        val totalOrderNum = intent.getIntExtra("totalOrderNum", 0)
+        val orderNumber: TextView = findViewById(R.id.order_number)
+        orderNumber.setText("${totalOrderNum + 200}")
+
         val data1 = intent.getStringExtra("data1")
         val data2 = intent.getStringExtra("data2")
 

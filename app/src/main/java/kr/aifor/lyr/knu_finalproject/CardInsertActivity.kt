@@ -30,7 +30,7 @@ class CardInsertActivity : AppCompatActivity() {
         val orderNum: TextView = findViewById(R.id.cardInsertOLNum)
         val orderPrice: TextView = findViewById(R.id.cardInsertOLPrice)
         val insertPayment: TextView = findViewById(R.id.InsertPayment)
-
+        var updateSet = HashSet<Int>()
 
         //주문내역 출력
         var orderPrintName: String = ""
@@ -119,55 +119,31 @@ class CardInsertActivity : AppCompatActivity() {
         cardCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 for (key in keys) {
-                    num = orderMap.get(key)!!
-
                     if (key < 1000) {
-                        var left = fireBaseData.get(key.toString())!!.left - num
-
-                        // fireBaseData에 재고량 갱신
-                        var curMenu = fireBaseData.get("${key}")
-                        curMenu!!.left = left
-                        fireBaseData.put("${key}", curMenu)
-                        //
-
-                        database.child("${key}").child("left").setValue(left)
-                        db_totalOrderNum += num
+                        updateSet.add(key)
                     } else {
-                        var burgerLeft = fireBaseData.get(burgerCode.toString())!!.left - num
-                        var sideLeft = fireBaseData.get(sideCode.toString())!!.left - num
-                        var drinkLeft = fireBaseData.get(drinkCode.toString())!!.left - num
-
-                        // fireBaseData에 재고량 갱신
-                        var curMenu = fireBaseData.get("${burgerCode}")
-                        curMenu!!.left = burgerLeft
-                        fireBaseData.put("${burgerCode}", curMenu)
-
-                        curMenu = fireBaseData.get("${sideCode}")
-                        curMenu!!.left = sideLeft
-                        fireBaseData.put("${sideCode}", curMenu)
-
-                        curMenu = fireBaseData.get("${drinkCode}")
-                        curMenu!!.left = drinkLeft
-                        fireBaseData.put("${drinkCode}", curMenu)
-                        //
-
-                        fireBaseData.get(burgerCode.toString())!!.left = burgerLeft
-                        fireBaseData.get(burgerCode.toString())!!.left = sideLeft
-                        fireBaseData.get(burgerCode.toString())!!.left = drinkLeft
-
-                        database.child("${burgerCode}").child("left").setValue(burgerLeft)
-                        database.child("${sideCode}").child("left").setValue(sideLeft)
-                        database.child("${drinkCode}").child("left").setValue(drinkLeft)
-                        db_totalOrderNum += 3 * num
+                        updateSet.add(key / 1000000)
+                        updateSet.add((key % 1000000) / 1000)
+                        updateSet.add(key % 1000)
                     }
+                    Log.d("Gen", "key : ${key}")
                 }
-                database.child("totalOrderNum").setValue(db_totalOrderNum)
+                val update = updateSet.iterator()
+                while (update.hasNext()) {
+                    var key = update.next()
+                    val left = fireBaseData.get(key.toString())!!.left
+                    Log.d("Gen", "${key.toString()} left : ${left}")
+                    database.child("${key.toString()}").child("left").setValue(left)
+                }
+
+                database.child("totalOrderNum").setValue(++db_totalOrderNum)
                 db_totalSellPrice += priceSum
                 database.child("totalSellPrice").setValue(db_totalSellPrice)
 
 
                 val intent2 = Intent(this, CompletePaymentActivity::class.java)
                 // CompletePaymentActivity로 데이터 전달
+                intent2.putExtra("totalOrderNum", db_totalOrderNum)
                 startActivity(intent2)
                 finish()
             }

@@ -4,22 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.GridLayout
-import android.widget.ImageView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class FishMenuActivity : AppCompatActivity() {
+class FishMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     var orderMap = HashMap<Int, Int>()
     lateinit var rec_orderList: RecyclerView
     lateinit var orderAdapter: orderAdapter
     lateinit var completeButton: Button
     lateinit var cancleButton: Button
+    var tempData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var burgerImageView: ImageView
     var fireBaseData: HashMap<String, Menu> = java.util.HashMap()
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
@@ -70,47 +69,43 @@ class FishMenuActivity : AppCompatActivity() {
             }
         }
 
-        if(fireBaseData.get("106")!!.left==0){
-            burgerImageView=findViewById(R.id.burger_106_img)
-            burgerImageView.setImageResource(R.drawable.soldout_img)
+        fun checkSoldout(code : String, imgId : Int){
+            if(fireBaseData.get(code)!!.left == 0){
+                burgerImageView = findViewById(imgId)
+                burgerImageView.setImageResource(R.drawable.soldout_img)
+            }
         }
-        if(fireBaseData.get("107")!!.left==0){
-            burgerImageView=findViewById(R.id.burger_107_img)
-            burgerImageView.setImageResource(R.drawable.soldout_img)
-        }
+        checkSoldout("106", R.id.burger_106_img)
+        checkSoldout("107", R.id.burger_107_img)
 
         var burger_106_grid = findViewById<GridLayout>(R.id.fish_106_grid)
-        burger_106_grid.setOnClickListener {
-            if(fireBaseData.get("106")!!.left==0){
-                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                val intent2 = Intent(this, SelectSetActivity::class.java)
-                if (orderMap == null)
-                    Log.d("Gen", "OrderMap is Null")
-                intent2.putExtra("fireBaseData", fireBaseData)
-                intent2.putExtra("burgerCode", 106)
-
-                requestLaunch.launch(intent2)
-            }
-        }
+        burger_106_grid.setOnClickListener(this)
 
         var burger_107_grid = findViewById<GridLayout>(R.id.fish_107_grid)
-        burger_107_grid.setOnClickListener {
-            if(fireBaseData.get("107")!!.left==0){
-                Toast.makeText(applicationContext,"해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                val intent2 = Intent(this, SelectSetActivity::class.java)
-                if (orderMap == null)
-                    Log.d("Gen", "OrderMap is Null")
-                intent2.putExtra("fireBaseData", fireBaseData)
-                intent2.putExtra("burgerCode", 107)
+        burger_107_grid.setOnClickListener(this)
 
-                requestLaunch.launch(intent2)
-            }
+
+    }
+
+    override fun onClick(p0: View) {
+        var code = 0
+        when (p0.id) {
+            R.id.fish_106_grid -> code = 106
+            R.id.fish_107_grid -> code = 107
         }
+        if (fireBaseData.get(code.toString())!!.left == 0) {
+            Toast.makeText(applicationContext, "해당 상품은 품절입니다.", Toast.LENGTH_SHORT).show()
+        } else if (tempData.get(code.toString())!!.left == 0) {
+            Toast.makeText(applicationContext, "최대 주문 가능 수량입니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            val intent2 = Intent(this, SelectSetActivity::class.java)
+            if (orderMap == null)
+                Log.d("Gen", "OrderMap is Null")
+            intent2.putExtra("fireBaseData", fireBaseData)
+            intent2.putExtra("tempData", tempData)
+            intent2.putExtra("burgerCode", code)
 
-
+            requestLaunch.launch(intent2)
+        }
     }
 }
