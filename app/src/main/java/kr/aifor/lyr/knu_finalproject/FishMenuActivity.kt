@@ -33,8 +33,10 @@ class FishMenuActivity : AppCompatActivity(), View.OnClickListener {
 
         orderMap = intent.getSerializableExtra("orderMap") as HashMap<Int, Int>
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
+        tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
 
-        orderAdapter = orderAdapter(orderMap, fireBaseData)
+        // orderAdapter = orderAdapter(orderMap, fireBaseData)
+        orderAdapter = orderAdapter(orderMap, tempData)
         rec_orderList.layoutManager = LinearLayoutManager(this)
         rec_orderList.adapter = orderAdapter
 
@@ -47,9 +49,30 @@ class FishMenuActivity : AppCompatActivity(), View.OnClickListener {
         cancleButton = findViewById<Button>(R.id.fish_cancle_btn)
         cancleButton.setOnClickListener {
             val keys = orderMap.keys.toIntArray()
-            for (k in keys) {
-                Log.d("Gen", "k =${k}")
-                orderMap.remove(k)
+            for (code in keys) {
+                var num = orderMap.get(code)!!
+                if (code < 1000) {
+                    val menu = tempData.get(code.toString())!!
+                    menu.left += num
+                    tempData.put(menu.code.toString(), menu)
+                } else {
+                    var burgerCode = code / 1000000
+                    var sideCode = (code % 1000000) / 1000
+                    var drinkCode = code % 1000
+
+                    var burger = tempData.get(burgerCode.toString())!!
+                    var side = tempData.get(sideCode.toString())!!
+                    var drink = tempData.get(drinkCode.toString())!!
+
+                    burger.left += num
+                    side.left += num
+                    drink.left += num
+
+                    tempData.put(burger.code.toString(), burger)
+                    tempData.put(side.code.toString(), side)
+                    tempData.put(drink.code.toString(), drink)
+                }
+                orderMap.remove(code)
             }
             orderAdapter.notifyDataSetChanged()
         }
@@ -65,12 +88,34 @@ class FishMenuActivity : AppCompatActivity(), View.OnClickListener {
                     orderMap.put(resultData, orderMap.get(resultData)!! + 1)
                 else
                     orderMap.put(resultData, 1)
+
+                if (resultData < 1000) {
+                    val orderMenu = tempData.get(resultData.toString())!!
+                    orderMenu.left--
+                    tempData.put(orderMenu.code.toString(), orderMenu)
+                } else {
+                    var burgerCode = resultData / 1000000
+                    var sideCode = (resultData % 1000000) / 1000
+                    var drinkCode = resultData % 1000
+
+                    var burger = tempData.get(burgerCode.toString())!!
+                    var side = tempData.get(sideCode.toString())!!
+                    var drink = tempData.get(drinkCode.toString())!!
+
+                    burger.left--
+                    side.left--
+                    drink.left--
+
+                    tempData.put(burger.code.toString(), burger)
+                    tempData.put(side.code.toString(), side)
+                    tempData.put(drink.code.toString(), drink)
+                }
                 orderAdapter.notifyDataSetChanged()
             }
         }
 
-        fun checkSoldout(code : String, imgId : Int){
-            if(fireBaseData.get(code)!!.left == 0){
+        fun checkSoldout(code: String, imgId: Int) {
+            if (fireBaseData.get(code)!!.left == 0) {
                 burgerImageView = findViewById(imgId)
                 burgerImageView.setImageResource(R.drawable.soldout_img)
             }

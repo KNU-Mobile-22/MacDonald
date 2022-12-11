@@ -306,7 +306,6 @@ class SelectSetActivity : AppCompatActivity() {
         binding.addToCartBtn.setOnClickListener {
 
             if (isSet == false) {
-
                 intent.putExtra("result", burgerCode)
                 setResult(RESULT_OK, intent)
                 finish()
@@ -325,6 +324,12 @@ class SelectSetActivity : AppCompatActivity() {
                     finish()
                 }
             }
+        }
+
+        // 돌아가기 버튼
+        binding.selectBackBtn.setOnClickListener {
+            setResult(RESULT_CANCELED, intent)
+            finish()
         }
     }
 }
