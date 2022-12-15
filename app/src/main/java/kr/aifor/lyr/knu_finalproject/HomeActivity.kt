@@ -46,6 +46,8 @@ class HomeActivity : AppCompatActivity() {
 
     var isTimerRunning = false
 
+    lateinit var help_msg_view: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
@@ -55,6 +57,7 @@ class HomeActivity : AppCompatActivity() {
         btn_main = findViewById(R.id.main)
         btn_option = findViewById(R.id.option)
         view_guide = findViewById(R.id.guideText)
+        help_msg_view = findViewById(R.id.help_msg_txt)
 
         database = Firebase.database.reference
         // initDatabase()
@@ -123,6 +126,7 @@ class HomeActivity : AppCompatActivity() {
 
             currentMode = "general"
             view_guide.visibility = VISIBLE
+            help_msg_view.visibility= INVISIBLE
             btn_option.text = "여기를 터치하세요"
         }
 
@@ -143,6 +147,7 @@ class HomeActivity : AppCompatActivity() {
 
             currentMode = "general"
             view_guide.visibility = VISIBLE
+            help_msg_view.visibility= INVISIBLE
             btn_option.text = "여기를 터치하세요"
         }
 
@@ -192,12 +197,14 @@ class HomeActivity : AppCompatActivity() {
                 btnText = btn_option.text.toString()
                 if (currentMode == "general") {
                     currentMode = "easy"
+                    help_msg_view.visibility= VISIBLE
                     view_guide.visibility = INVISIBLE
                     btn_option.text = "일반 모드로 돌아가기"
                     //btn_option.setTextSize(10)
                 } else {
                     currentMode = "general"
                     view_guide.visibility = VISIBLE
+                    help_msg_view.visibility= INVISIBLE
                     btn_option.text = "여기를 터치하세요"
                 }
                 /*Toast.makeText(

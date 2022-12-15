@@ -10,6 +10,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/help_msg_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/help_msg"
+            android:text=" 4. 단품 혹은 세트를 선택하세요. "
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:visibility="visible" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,9 +73,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:backgroundTint="#000000"
+                        android:backgroundTint="#DFDFDF"
                         android:text="세트"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#A7A7A7"
                         android:textSize="25dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -113,7 +126,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -135,7 +150,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -157,7 +174,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -179,7 +198,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -246,7 +267,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -268,7 +291,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -290,7 +315,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -312,7 +339,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -334,7 +363,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -356,7 +387,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -378,7 +411,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -400,7 +435,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:background="@drawable/edge"
                 android:orientation="vertical"
+                android:padding="1dp"
                 android:rowCount="2">
 
                 <ImageButton
@@ -421,11 +458,11 @@
 
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/add_to_cart_btn"
@@ -445,6 +482,19 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/help_msg_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/help_msg"
+            android:text=" 5. 장바구니 추가를 누르세요. "
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:visibility="visible" />
 
 
     </LinearLayout>

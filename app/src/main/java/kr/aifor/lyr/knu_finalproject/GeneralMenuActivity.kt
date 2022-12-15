@@ -258,6 +258,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
                     intent2.putExtra("fireBaseData", fireBaseData)
                     intent2.putExtra("tempData", tempData)
                     intent2.putExtra("burgerCode", data.code)
+                    intent2.putExtra("intentFrom", "General")
                     // intent2.putExtra("orderMap", orderMap)
                     // intent2.putExtra("data2", "test2")
                     Log.d("burgerCode", "${data.code}")

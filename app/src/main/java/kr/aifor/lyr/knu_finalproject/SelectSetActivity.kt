@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +20,7 @@ class SelectSetActivity : AppCompatActivity() {
     var currentSideCode: Int = 0
     var currentDrinkCode: Int = 0
     lateinit var setImg: ImageView
+    lateinit var text: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,15 @@ class SelectSetActivity : AppCompatActivity() {
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
         var burgerCode = intent.getIntExtra("burgerCode", 0)
+        var intentFrom = intent.getStringExtra("intentFrom")
         Log.d("Gen", "Select = ${fireBaseData.get("101")!!.name}")
+
+        if (intentFrom.equals("General")) {
+            text = findViewById(R.id.help_msg_txt1)
+            text.visibility = GONE
+            text = findViewById(R.id.help_msg_txt2)
+            text.visibility = GONE
+        }
 
         // 버거 이름 설정
         binding.selectTxt.setText(fireBaseData.get(burgerCode.toString())!!.name)
@@ -104,10 +114,12 @@ class SelectSetActivity : AppCompatActivity() {
             binding.drinktxt.setText("")
             binding.sideimg.setImageResource(R.drawable.grayright)
             binding.drinkimg.setImageResource(R.drawable.grayright)
+
             binding.singlebtn.setBackgroundColor(Color.rgb(255, 235, 59))
             binding.singlebtn.setTextColor(Color.rgb(255, 0, 0))
-            binding.setbtn.setTextColor(Color.rgb(255, 255, 255))
-            binding.setbtn.setBackgroundColor(Color.rgb(0, 0, 0))
+
+            binding.setbtn.setTextColor(Color.rgb(166, 166, 166))
+            binding.setbtn.setBackgroundColor(Color.rgb(223, 223, 223))
 
             currentSideCode = 0
             currentDrinkCode = 0
@@ -126,10 +138,12 @@ class SelectSetActivity : AppCompatActivity() {
             binding.drinkimg.setImageResource(R.drawable.under)
             binding.sidetxt.setText("")
             binding.drinktxt.setText("")
+
             binding.setbtn.setBackgroundColor(Color.rgb(255, 235, 59))
             binding.setbtn.setTextColor(Color.rgb(255, 0, 0))
-            binding.singlebtn.setTextColor(Color.rgb(255, 255, 255))
-            binding.singlebtn.setBackgroundColor(Color.rgb(0, 0, 0))
+
+            binding.singlebtn.setTextColor(Color.rgb(166, 166, 166))
+            binding.singlebtn.setBackgroundColor(Color.rgb(223, 223, 223))
 
             isSet = true
         }

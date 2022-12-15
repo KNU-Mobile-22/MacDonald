@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SideMenuActivity : AppCompatActivity() {
     lateinit var MenuManager: GridLayoutManager
-    lateinit var menuAdapter: MenuAdapter
+    // lateinit var menuAdapter: MenuAdapter
+    lateinit var menuAdapter: MenuAdapterEasy
     lateinit var rec_side: RecyclerView
 
     var menuList = MenuList()
@@ -43,14 +44,14 @@ class SideMenuActivity : AppCompatActivity() {
         tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
 
         MenuManager = GridLayoutManager(this, 3)
-        menuAdapter = MenuAdapter(menuList.sideList, fireBaseData)
+        menuAdapter = MenuAdapterEasy(menuList.sideList, fireBaseData)
         var Menu_List = rec_side.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
             adapter = menuAdapter
         }
 
-        menuAdapter.setOnItemClickListener(object : MenuAdapter.OnItemCLickListener {
+        menuAdapter.setOnItemClickListener(object : MenuAdapterEasy.OnItemCLickListener {
             override fun onItemClick(v: View, data: Menu, position: Int) =
                 ItemClickLister(v, data, position)
         })

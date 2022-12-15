@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View.inflate
 import android.widget.Button
@@ -47,7 +48,6 @@ class CompletePaymentActivity : AppCompatActivity() {
 
         val btn_clear = findViewById<Button>(R.id.btn_clear)
         val btn_zero = findViewById<Button>(R.id.btn_zero)
-        val btn_sharp = findViewById<Button>(R.id.btn_sharp)
 
         var btn_point = findViewById<Button>(R.id.comp_btn_point)
 
@@ -145,11 +145,27 @@ class CompletePaymentActivity : AppCompatActivity() {
             }
         }*/
 
+        var isTimerRunning = false
+        val countDown = object : CountDownTimer(30000, 1000) {
+
+            override fun onTick(p0: Long) {
+                // countDownInterval 마다 호출 (여기선 1000ms)
+                Log.d("myLog", "onTick")
+            }
+
+            override fun onFinish() {
+                // 타이머가 종료되면 호출
+                isTimerRunning = false
+                finish()
+            }
+        }.start()
+
         btn_point.setOnClickListener {
             if (customer_number.equals(""))
                 Toast.makeText(applicationContext, "적립 번호를 입력하세요.", Toast.LENGTH_SHORT).show()
             else {
                 Toast.makeText(applicationContext, "적립이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
 

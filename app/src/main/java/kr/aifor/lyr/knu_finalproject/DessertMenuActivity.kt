@@ -2,7 +2,6 @@ package kr.aifor.lyr.knu_finalproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -12,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DessertMenuActivity : AppCompatActivity() {
     lateinit var MenuManager: GridLayoutManager
-    lateinit var menuAdapter: MenuAdapter
-    lateinit var rec_drink: RecyclerView
+    // lateinit var menuAdapter: MenuAdapter
+    lateinit var menuAdapter: MenuAdapterEasy
+    lateinit var rec_dessert: RecyclerView
 
     var menuList = MenuList()
 
@@ -31,7 +31,7 @@ class DessertMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dessert_menu)
 
-        rec_drink = findViewById(R.id.easy_dessert_recyclerview)
+        rec_dessert = findViewById(R.id.easy_dessert_recyclerview)
         rec_orderList = findViewById(R.id.easy_orderList_dessert)
         completeButton = findViewById(R.id.dessert_complete_btn)
         cancleButton = findViewById(R.id.dessert_cancle_btn)
@@ -41,14 +41,14 @@ class DessertMenuActivity : AppCompatActivity() {
         tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
 
         MenuManager = GridLayoutManager(this, 3)
-        menuAdapter = MenuAdapter(menuList.desertList, fireBaseData)
-        var Menu_List = rec_drink.apply {
+        menuAdapter = MenuAdapterEasy(menuList.desertList, fireBaseData)
+        var Menu_List = rec_dessert.apply {
             setHasFixedSize(true)
             layoutManager = MenuManager
             adapter = menuAdapter
         }
 
-        menuAdapter.setOnItemClickListener(object : MenuAdapter.OnItemCLickListener {
+        menuAdapter.setOnItemClickListener(object : MenuAdapterEasy.OnItemCLickListener {
             override fun onItemClick(v: View, data: Menu, position: Int) =
                 ItemClickLister(v, data, position)
         })

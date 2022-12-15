@@ -1,10 +1,12 @@
 package kr.aifor.lyr.knu_finalproject
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,11 +21,15 @@ class EasyMenuActivity : AppCompatActivity() {
     lateinit var orderAdapter: orderAdapter
     lateinit var orderList: RecyclerView
 
+    lateinit var helpView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_easy_menu)
 
+        var paymentButton = findViewById<Button>(R.id.easy_payment_btn)
         orderList = findViewById(R.id.easy_main_orderList)
+        helpView = findViewById(R.id.help_msg_txt)
 
         fireBaseData = intent.getSerializableExtra("fireBaseData") as HashMap<String, Menu>
         tempData = intent.getSerializableExtra("tempData") as HashMap<String, Menu>
@@ -42,6 +48,14 @@ class EasyMenuActivity : AppCompatActivity() {
                 orderAdapter = orderAdapter(orderMap, tempData)
                 orderList.layoutManager = LinearLayoutManager(this)
                 orderList.adapter = orderAdapter
+            }
+            if (orderMap.isEmpty()) {
+                //nothing
+            } else {
+                paymentButton.setBackgroundColor(Color.parseColor("#FFEB3B"))
+                paymentButton.setTextColor(Color.parseColor("#000000"))
+                helpView.setText(" 6. 결제하기 버튼을 누르세요. ")
+
             }
         }
 
@@ -136,10 +150,13 @@ class EasyMenuActivity : AppCompatActivity() {
             // startActivity(intent2)
         }
 
-        var paymentButton = findViewById<Button>(R.id.easy_payment_btn)
         paymentButton.setOnClickListener {
             if (orderMap.isEmpty()) {
                 Toast.makeText(applicationContext, "주문할 메뉴를 선택해주세요", Toast.LENGTH_SHORT).show()
+                paymentButton.setBackgroundColor(Color.parseColor("#DA291C"))
+                paymentButton.setTextColor(Color.parseColor("#FFFFFFFF"))
+                helpView.setText(" 2. 카테고리를 선택해주세요. ")
+
             } else {
                 val intent2 = Intent(this, PaymentSelectActivity::class.java)
                 if (orderMap == null)

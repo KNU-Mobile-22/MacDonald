@@ -25,7 +25,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="80dp"
             android:gravity="center"
-            android:text="총 판매 수량 : "
+            android:text="총 주문 횟수 : "
             android:textSize="25dp" />
 
 
