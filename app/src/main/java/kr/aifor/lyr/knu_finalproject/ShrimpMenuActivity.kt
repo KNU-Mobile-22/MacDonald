@@ -84,7 +84,7 @@ class ShrimpMenuActivity : AppCompatActivity(), View.OnClickListener {
         ) {
             if (it.resultCode == RESULT_OK) {
                 var resultData: Int = it.data!!.getIntExtra("result", 0)
-                Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
 
                 if (orderMap.containsKey(resultData))
                     orderMap.put(resultData, orderMap.get(resultData)!! + 1)

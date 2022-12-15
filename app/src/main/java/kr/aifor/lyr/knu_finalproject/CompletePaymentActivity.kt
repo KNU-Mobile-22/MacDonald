@@ -1,14 +1,23 @@
 package kr.aifor.lyr.knu_finalproject
 
+import android.app.Activity
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View.inflate
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import kr.aifor.lyr.knu_finalproject.databinding.ActivityCompletePaymentBinding
+import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
+import kr.aifor.lyr.knu_finalproject.databinding.PointDialogBinding
+import kotlin.system.exitProcess
 
 class CompletePaymentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // val binding = ActivityCompletePaymentBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_complete_payment)
 
         val totalOrderNum = intent.getIntExtra("totalOrderNum", 0)
@@ -39,6 +48,8 @@ class CompletePaymentActivity : AppCompatActivity() {
         val btn_clear = findViewById<Button>(R.id.btn_clear)
         val btn_zero = findViewById<Button>(R.id.btn_zero)
         val btn_sharp = findViewById<Button>(R.id.btn_sharp)
+
+        var btn_point = findViewById<Button>(R.id.comp_btn_point)
 
         /*
         초기에 '번호를 입력하세요' 있음
@@ -122,6 +133,26 @@ class CompletePaymentActivity : AppCompatActivity() {
         orderFinishButton.setOnClickListener {
             finish()
         }
+
+/*        btn_point.setOnClickListener {
+            Log.d("myLog", "compBtnPoint Clicked!")
+            val dialogBinding = PointDialogBinding.inflate(layoutInflater)
+            AlertDialog.Builder(this).run {
+                setTitle("")
+                setView(dialogBinding.root)
+                setPositiveButton("확인", null)
+                show()
+            }
+        }*/
+
+        btn_point.setOnClickListener {
+            if (customer_number.equals(""))
+                Toast.makeText(applicationContext, "적립 번호를 입력하세요.", Toast.LENGTH_SHORT).show()
+            else {
+                Toast.makeText(applicationContext, "적립이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     }
 }

@@ -35,7 +35,7 @@ class EasyMenuActivity : AppCompatActivity() {
             if (it.resultCode == RESULT_OK) {
                 val result = it.data?.getSerializableExtra("orderMap") as HashMap<Int, Int>
                 tempData = it.data?.getSerializableExtra("tempData") as HashMap<String, Menu>
-                Toast.makeText(applicationContext, "orderMap 받아오기 성공", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(applicationContext, "orderMap 받아오기 성공", Toast.LENGTH_SHORT).show()
                 orderMap = result
                 Log.d("myLog", "orderMap: ${orderMap}")
                 // orderAdapter = orderAdapter(orderMap, fireBaseData)
@@ -194,6 +194,10 @@ class EasyMenuActivity : AppCompatActivity() {
             }
             orderAdapter.notifyDataSetChanged()
         }
+
+        orderAdapter = orderAdapter(orderMap, tempData)
+        orderList.layoutManager = LinearLayoutManager(this)
+        orderList.adapter = orderAdapter
 
     }
 }

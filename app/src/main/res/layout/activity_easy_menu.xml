@@ -29,72 +29,72 @@
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="소 고 기\n버거"
-            android:textSize="20dp" />
+            android:text="소고기 버거"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_chicken_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="치 킨\n버 거"
-            android:textSize="20dp" />
+            android:text="치킨 버거"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_cheese_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="치 즈\n버 거"
-            android:textSize="20dp" />
+            android:text="치즈 버거"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_bulgogi_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="불 고 기\n버 거"
-            android:textSize="20dp" />
+            android:text="불고기 버거"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_shrimp_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="새 우\n버 거"
-            android:textSize="20dp" />
+            android:text="새우 버거"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_fish_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="생 선\n버 거"
-            android:textSize="20dp" />
+            android:text="생선 버거"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_side_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="사 이 드"
-            android:textSize="20dp" />
+            android:text="사이드"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_drink_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="음  료"
-            android:textSize="20dp" />
+            android:text="음료"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/easy_dessert_btn"
             android:layout_width="0dp"
             android:layout_height="110dp"
             android:layout_columnWeight="1"
-            android:text="디 저 트"
-            android:textSize="20dp" />
+            android:text="디저트"
+            android:textSize="30dp" />
 
     </GridLayout>
 

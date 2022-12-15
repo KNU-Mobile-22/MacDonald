@@ -19,7 +19,7 @@ import com.google.firebase.database.ktx.database
 // import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
-import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
+//import kr.aifor.lyr.knu_finalproject.databinding.ActivitySelectSetBinding
 import kotlin.collections.HashMap
 
 /**
@@ -75,7 +75,7 @@ class GeneralMenuActivity : AppCompatActivity(), View.OnClickListener {
         ) {
             if (it.resultCode == RESULT_OK) {
                 var resultData: Int = it.data!!.getIntExtra("result", 0)
-                Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(applicationContext, "${resultData}", Toast.LENGTH_SHORT).show()
 
                 if (orderMap.containsKey(resultData))
                     orderMap.put(resultData, orderMap.get(resultData)!! + 1)

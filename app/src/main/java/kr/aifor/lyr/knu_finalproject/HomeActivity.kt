@@ -3,9 +3,15 @@ package kr.aifor.lyr.knu_finalproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,10 +23,11 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var btn_main: Button
+    lateinit var btn_main: ImageView
     lateinit var btn_take_in: Button
     lateinit var btn_take_out: Button
     lateinit var btn_option: Button
+    lateinit var view_guide: TextView
 
     var orderCount: Int = -1
     var orderPrice: Int = -1
@@ -37,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
 
     var isNetworkDone = false
 
+    var isTimerRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +54,8 @@ class HomeActivity : AppCompatActivity() {
         btn_take_out = findViewById(R.id.take_out)
         btn_main = findViewById(R.id.main)
         btn_option = findViewById(R.id.option)
+        view_guide = findViewById(R.id.guideText)
+
         database = Firebase.database.reference
         // initDatabase()
         Log.d("Gen", "loading")
@@ -71,7 +81,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 isNetworkDone = true
                 Log.d("myLog", "firebase init complete!")
-                Toast.makeText(applicationContext, "firebase 갱신 성공", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(applicationContext, "firebase 갱신 성공", Toast.LENGTH_SHORT).show()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -93,12 +103,12 @@ class HomeActivity : AppCompatActivity() {
         ) {
             if (it.resultCode == RESULT_OK) {
                 val resultData = it.data?.getStringExtra("result")
-                Toast.makeText(applicationContext, resultData, Toast.LENGTH_SHORT).show()
+                // Toast.makeText(applicationContext, resultData, Toast.LENGTH_SHORT).show()
             }
         }
 
         btn_take_in.setOnClickListener {
-            Toast.makeText(applicationContext, "매장 버튼 Clicked", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(applicationContext, "매장 버튼 Clicked", Toast.LENGTH_SHORT).show()
             loc = "takeIn"
             if (currentMode.equals("general") && isNetworkDone) {
                 var intent = Intent(this, GeneralMenuActivity::class.java)
@@ -109,12 +119,15 @@ class HomeActivity : AppCompatActivity() {
                 var intent = Intent(this, EasyMenuActivity::class.java)
                 intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
-
             }
+
+            currentMode = "general"
+            view_guide.visibility = VISIBLE
+            btn_option.text = "여기를 터치하세요"
         }
 
         btn_take_out.setOnClickListener {
-            Toast.makeText(applicationContext, "포장 버튼 Clicked", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(applicationContext, "포장 버튼 Clicked", Toast.LENGTH_SHORT).show()
 
             loc = "takeOut"
             if (currentMode.equals("general") && isNetworkDone) {
@@ -126,15 +139,47 @@ class HomeActivity : AppCompatActivity() {
                 var intent = Intent(this, EasyMenuActivity::class.java)
                 intent = makeIntent(intent, loc)
                 requestLaunch.launch(intent)
+            }
 
+            currentMode = "general"
+            view_guide.visibility = VISIBLE
+            btn_option.text = "여기를 터치하세요"
+        }
+
+        var count = 0
+
+
+        val countDown = object : CountDownTimer(1000, 1000) {
+
+            override fun onTick(p0: Long) {
+                // countDownInterval 마다 호출 (여기선 1000ms)
+            }
+
+            override fun onFinish() {
+                // 타이머가 종료되면 호출
+                count = 0
+                isTimerRunning = false
+                Log.d("myLog", "count: $count")
             }
         }
 
         btn_main.setOnClickListener {
-            Toast.makeText(applicationContext, "로고 버튼 Clicked", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, SupervisorActivity::class.java)
-            requestLaunch.launch(intent)
+            if (isTimerRunning == false) {
+                countDown.start()
+                isTimerRunning = true
+            }
+            // Toast.makeText(applicationContext, "로고 버튼 Clicked", Toast.LENGTH_SHORT).show()
+            count++
+            Log.d("myLog", "count: $count")
+
+            if (count == 5) {
+                count = 0
+                val intent = Intent(this, SupervisorActivity::class.java)
+                requestLaunch.launch(intent)
+            }
+
         }
+
 
     }
 
@@ -145,19 +190,21 @@ class HomeActivity : AppCompatActivity() {
             R.id.option -> {
 
                 btnText = btn_option.text.toString()
-                if (btnText == "키오스크가 어려우신가요?") {
+                if (currentMode == "general") {
                     currentMode = "easy"
+                    view_guide.visibility = INVISIBLE
                     btn_option.text = "일반 모드로 돌아가기"
                     //btn_option.setTextSize(10)
                 } else {
                     currentMode = "general"
-                    btn_option.text = "키오스크가 어려우신가요?"
+                    view_guide.visibility = VISIBLE
+                    btn_option.text = "여기를 터치하세요"
                 }
-                Toast.makeText(
+                /*Toast.makeText(
                     applicationContext,
                     "current mode: ${currentMode}",
                     Toast.LENGTH_SHORT
-                ).show()
+                ).show()*/
             }
         }
     }
@@ -207,6 +254,4 @@ class HomeActivity : AppCompatActivity() {
         database.child("totalOrderNum").setValue(0)
         database.child("totalSellPrice").setValue(0)
     }
-
-
 }

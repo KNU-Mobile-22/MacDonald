@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="5dp">
+
     <TextView
         android:id="@+id/orderName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="페퍼로니 메가 피자버거(감자, 사이다)"/>
+        android:text="페퍼로니 메가 피자버거(감자, 사이다)" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/orderPrice"
-            android:layout_width="130dp"
-            android:gravity="center"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="5000원"/>
+            android:gravity="center"
+            android:text="5000원" />
+
         <TextView
             android:id="@+id/minus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/teal_200"
             android:paddingHorizontal="10dp"
             android:text="-"
-            android:background="@color/teal_200"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/orderNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:text="1"/>
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="10" />
+
         <TextView
             android:id="@+id/plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/teal_200"
             android:paddingHorizontal="10dp"
             android:text="+"
-            android:background="@color/teal_200"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="x"/>
+            android:background="@drawable/edge"
+            android:gravity="center"
+            android:text="×"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
