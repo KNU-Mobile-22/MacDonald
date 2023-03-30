@@ -37,7 +37,7 @@
 <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"> <img src="https://img.shields.io/badge/Android Studio-3DDC84?style=for-the-badge&logo=Android Studio&logoColor=white"> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
 
 ## 역할
-|[장혁수](https://github.com/zangsu)|[손원준](https://github.com/sonwonjun103)|[이도훈](https://github.com/dleh1541)|[정도현]()|
+|[장혁수](https://github.com/zangsu)|[손원준](https://github.com/sonwonjun103)|[이도훈](https://github.com/dleh1541)|[정도현](https://github.com/countryCat1202)|
 |:-:|:-:|:-:|:-:|
 |발표|PPT 작업|DB설계|디자인|
 |일반모드 개발|결제 단계 개발|테스트 작업|간편모드 개발|
