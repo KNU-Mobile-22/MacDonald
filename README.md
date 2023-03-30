@@ -30,6 +30,8 @@
     + 이를 하나의 창에서 토글 메뉴로 구성하여 메뉴 선택 과정을 최소화
 
 ## 결과
+### 프로젝트 흐름
+![image](https://user-images.githubusercontent.com/76612738/228711919-6b95194b-d052-4979-a106-1ae34a49dfdb.png)
 
 ## 사용 기술
 <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"> <img src="https://img.shields.io/badge/Android Studio-3DDC84?style=for-the-badge&logo=Android Studio&logoColor=white"> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
